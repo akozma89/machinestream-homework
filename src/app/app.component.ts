@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { inject } from '@vercel/analytics';
+
+inject();
 
 @Component({
   selector: 'app-root',
