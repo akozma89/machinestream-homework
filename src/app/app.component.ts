@@ -2,8 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { inject } from '@vercel/analytics';
+import { injectSpeedInsights } from '@vercel/speed-insights';
 
 inject();
+injectSpeedInsights({
+  framework: 'angular',
+});
 
 @Component({
   selector: 'app-root',
