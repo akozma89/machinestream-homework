@@ -19,12 +19,12 @@ jobs:
           node-version: '18.x'
       - name: Install dependencies
         run: npm install
-      - name: Save build folder
+      - name: Save node_modules folder
         uses: actions/upload-artifact@v4
         with:
-          name: pre-install
+          name: node_modules
           if-no-files-found: error
-          path: pre-install
+          path: node_modules
 
   build:
     needs: pre-install
@@ -36,8 +36,8 @@ jobs:
       - name: Download the build folder
         uses: actions/download-artifact@v3
         with:
-          name: pre-install
-          path: pre-install
+          name: node_modules
+          path: node_modules
       - name: Build
         run: npm run build
 
@@ -51,8 +51,8 @@ jobs:
       - name: Download the build folder
         uses: actions/download-artifact@v3
         with:
-          name: pre-install
-          path: pre-install
+          name: node_modules
+          path: node_modules
       - name: Run lint
         run: npm run lint:ci
 
@@ -66,8 +66,8 @@ jobs:
       - name: Download the build folder
         uses: actions/download-artifact@v3
         with:
-          name: pre-install
-          path: pre-install
+          name: node_modules
+          path: node_modules
       - name: Run unit tests
         run: npm run test:ci
 
@@ -86,5 +86,5 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          start: npm start:ci
+          start: npm start
           browser: chrome
