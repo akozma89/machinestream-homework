@@ -23,6 +23,9 @@ jobs:
   lint:
     needs: pre-install
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
 
     steps:
       - name: Run lint
@@ -31,6 +34,9 @@ jobs:
   unit-tests:
     needs: [pre-install, lint]
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
 
     steps:
       - name: Run unit tests
@@ -39,6 +45,9 @@ jobs:
   e2e-tests:
     needs: [pre-install, lint]
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./
 
     steps:
       - name: Start development server
