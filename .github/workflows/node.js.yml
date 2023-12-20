@@ -25,14 +25,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Use cached dependencies
-        run: |
-          # Check for cached dependencies
-          npm cache list
-
-          # Skip installation for cached dependencies
-          npm install --no-save --ignore-scripts
-
       - name: Run unit tests
         run: npm run test
 
@@ -43,14 +35,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Use cached dependencies
-        run: |
-          # Check for cached dependencies
-          npm cache list
-
-          # Skip installation for cached dependencies
-          npm install --no-save --ignore-scripts
 
       - name: Start development server
         run: ng serve --port 4200
