@@ -39,7 +39,7 @@ jobs:
         run: npm run lint:ci
 
   unit-tests:
-    needs: [build, lint]
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -55,7 +55,7 @@ jobs:
         run: npm run test:ci
 
   e2e-tests:
-    needs: [build, lint]
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -68,7 +68,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Start development server
-        run: ng serve --port 4200
-
+        run: npm run start:ci
       - name: Run e2e tests
         run: npm run cypress:ci
