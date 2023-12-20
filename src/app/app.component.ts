@@ -6,16 +6,16 @@ import { injectSpeedInsights } from '@vercel/speed-insights';
 
 inject();
 injectSpeedInsights({
-  framework: 'angular',
+    framework: 'angular',
 });
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+    selector: 'app-root',
+    standalone: true,
+    imports: [CommonModule, RouterOutlet],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'machinestream-homework';
+    title = 'machinestream-homework';
 }
