@@ -1,23 +1,59 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Build and Test
+name: Unit and e2e tests
 
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+
 jobs:
-  build:
+  pre-install:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js 18.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18.x
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Angular dependencies
+        run: npm install
+
+  unit-tests:
+    needs: pre-install
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Use cached dependencies
+        run: |
+          # Check for cached dependencies
+          npm cache list
+
+          # Skip installation for cached dependencies
+          npm install --no-save --ignore-scripts
+
+      - name: Run unit tests
+        run: npm run test
+
+  e2e-tests:
+    needs: [pre-install, unit-tests]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Use cached dependencies
+        run: |
+          # Check for cached dependencies
+          npm cache list
+
+          # Skip installation for cached dependencies
+          npm install --no-save --ignore-scripts
+
+      - name: Start development server
+        run: ng serve --port 4200
+
+      - name: Run e2e tests
+        run: npm run cypress:open
