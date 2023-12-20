@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ng-toolkit
+        working-directory: ../
 
     steps:
       - name: Checkout repository
@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run lint
-        run: npm run lint
+        run: npm run lint:ci
 
   unit-tests:
     needs: [pre-install, lint]
@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run unit tests
-        run: npm run test
+        run: npm run test:ci
 
   e2e-tests:
     needs: [pre-install, lint]
@@ -54,4 +54,4 @@ jobs:
         run: ng serve --port 4200
 
       - name: Run e2e tests
-        run: npm run cypress:open
+        run: npm run cypress:ci
