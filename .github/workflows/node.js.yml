@@ -7,49 +7,66 @@ on:
     branches: [ "main" ]
 
 jobs:
-  pre-install:
+  build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ../
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repo
         uses: actions/checkout@v3
-
-      - name: Install Angular dependencies
+      - name: use node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - name: Install dependencies
         run: npm install
+      - name: Build
+        run: npm run build
 
   lint:
-    needs: pre-install
+    needs: build
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ../
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: use node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - name: Install dependencies
+        run: npm install
       - name: Run lint
         run: npm run lint:ci
 
   unit-tests:
-    needs: [pre-install, lint]
+    needs: [build, lint]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ../
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: use node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - name: Install dependencies
+        run: npm install
       - name: Run unit tests
         run: npm run test:ci
 
   e2e-tests:
-    needs: [pre-install, lint]
+    needs: [build, lint]
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ../
 
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: use node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - name: Install dependencies
+        run: npm install
       - name: Start development server
         run: ng serve --port 4200
 
