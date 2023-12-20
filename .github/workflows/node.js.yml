@@ -7,18 +7,37 @@ on:
     branches: [ "main" ]
 
 jobs:
+  pre-install:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: use node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+      - name: Install dependencies
+        run: npm install
+      - name: Save build folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: pre-install
+          if-no-files-found: error
+          path: pre-install
+
   build:
+    needs: pre-install
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: use node.js
-        uses: actions/setup-node@v3
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
         with:
-          node-version: '18.x'
-      - name: Install dependencies
-        run: npm install
+          name: pre-install
+          path: pre-install
       - name: Build
         run: npm run build
 
@@ -29,12 +48,11 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: use node.js
-        uses: actions/setup-node@v3
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
         with:
-          node-version: '18.x'
-      - name: Install dependencies
-        run: npm install
+          name: pre-install
+          path: pre-install
       - name: Run lint
         run: npm run lint:ci
 
@@ -45,12 +63,11 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: use node.js
-        uses: actions/setup-node@v3
+      - name: Download the build folder
+        uses: actions/download-artifact@v3
         with:
-          node-version: '18.x'
-      - name: Install dependencies
-        run: npm install
+          name: pre-install
+          path: pre-install
       - name: Run unit tests
         run: npm run test:ci
 
@@ -60,14 +77,14 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
-      - name: use node.js
-        uses: actions/setup-node@v3
+        uses: actions/checkout@v4
+      - name: Cypress install
+        uses: cypress-io/github-action@v6
         with:
-          node-version: '18.x'
-      - name: Install dependencies
-        run: npm install
-      - name: Start development server
-        run: npm run start:ci
-      - name: Run e2e tests
-        run: npm run cypress:ci
+          runTests: false
+          build: npm run build
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          start: npm start:ci
+          browser: chrome

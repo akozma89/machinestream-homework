@@ -14,8 +14,7 @@
     "lint:ci": "ng lint --format stylish --force",
     "e2e": "ng e2e",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "cypress:ci": "cypress run --headless --browser chrome"
+    "cypress:run": "cypress run"
   },
   "private": true,
   "dependencies": {
