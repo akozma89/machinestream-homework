@@ -12,19 +12,17 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
-      - name: use node.js
-        uses: actions/setup-node@v4
+        uses: actions/checkout@v3
+      - name: Cache node modules
+        id: cache-npm
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
         with:
-          node-version: '18.x'
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         run: npm install
-      - name: Save node_modules folder
-        uses: actions/upload-artifact@v4
-        with:
-          name: node_modules
-          if-no-files-found: error
-          path: node_modules
 
   build:
     needs: pre-install
@@ -33,11 +31,13 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Download the build folder
-        uses: actions/download-artifact@v3
+      - name: Restore modules cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
         with:
-          name: node_modules
-          path: node_modules
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - name: Build
         run: npm run build
 
@@ -48,11 +48,13 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Download the build folder
-        uses: actions/download-artifact@v3
+      - name: Restore modules cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
         with:
-          name: node_modules
-          path: node_modules
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - name: Run lint
         run: npm run lint:ci
 
@@ -63,11 +65,13 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-      - name: Download the build folder
-        uses: actions/download-artifact@v3
+      - name: Restore modules cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
         with:
-          name: node_modules
-          path: node_modules
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
       - name: Run unit tests
         run: npm run test:ci
 
