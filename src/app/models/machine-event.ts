@@ -1,6 +1,11 @@
+import { MachineEventsOptions } from '../interfaces/machine-events-options';
+
 export class MachineEvent {
-    constructor(
-        public timestamp: string,
-        public status: string
-    ) {}
+    timestamp: string;
+    status: string;
+
+    constructor(options: MachineEventsOptions) {
+        this.timestamp = options.timestamp;
+        this.status = options.status;
+    }
 }

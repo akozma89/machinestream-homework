@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'phoenix';
 import { environment } from '../../environments/environment';
-import { MachineUpdate } from '../interfaces/machine-update';
+import { MachineUpdateResponse } from '../interfaces/machine-update-response';
 
 @Injectable({
     providedIn: 'root',
@@ -19,7 +19,7 @@ export class MachineStatusWebsocketService {
         }
     }
 
-    subscribe(subscriptionFn: (event: MachineUpdate) => void) {
+    subscribe(subscriptionFn: (event: MachineUpdateResponse) => void) {
         this.channel.on('new', subscriptionFn);
     }
 }

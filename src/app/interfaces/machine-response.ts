@@ -1,5 +1,5 @@
-import { Machine } from '../models/machine';
+import { MachineOptions } from './machine-options';
 
 export interface MachineResponse {
-    data: Machine;
+    data: MachineOptions;
 }
