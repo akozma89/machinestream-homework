@@ -1,6 +1,6 @@
 # MachinestreamHomework
 
-[![Linter](https://github.com/akozma89/machinestream-homework/actions/workflows/lint.yml/badge.svg)](https://github.com/akozma89/machinestream-homework/actions/workflows/lint.yml) [![codecov](https://codecov.io/gh/akozma89/machinestream-homework/graph/badge.svg?token=VPIKSGLCDA)](https://codecov.io/gh/akozma89/machinestream-homework) [![E2E Tests](https://github.com/akozma89/machinestream-homework/actions/workflows/e2e-test.yml/badge.svg)](https://github.com/akozma89/machinestream-homework/actions/workflows/e2e-test.yml)
+[![Linter](https://github.com/akozma89/machinestream-homework/actions/workflows/lint.yml/badge.svg)](https://github.com/akozma89/machinestream-homework/actions/workflows/lint.yml) [![Unit Tests](https://github.com/akozma89/machinestream-homework/actions/workflows/unit-test.yml/badge.svg)](https://github.com/akozma89/machinestream-homework/actions/workflows/unit-test.yml) [![codecov](https://codecov.io/gh/akozma89/machinestream-homework/graph/badge.svg?token=VPIKSGLCDA)](https://codecov.io/gh/akozma89/machinestream-homework) [![E2E Tests](https://github.com/akozma89/machinestream-homework/actions/workflows/e2e-test.yml/badge.svg)](https://github.com/akozma89/machinestream-homework/actions/workflows/e2e-test.yml)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.7.
 
