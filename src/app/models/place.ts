@@ -1,10 +1,12 @@
 import { PlaceOptions } from '../interfaces/place-options';
 import { Machine } from './machine';
+import { v4 as uuidv4 } from 'uuid';
 
 export class Place {
-    longitude: number;
-    latitude: number;
-    floors: PlaceOptions['floors'];
+    id = uuidv4();
+    longitude!: number;
+    latitude!: number;
+    floors: PlaceOptions['floors'] = [];
 
     constructor(options: PlaceOptions) {
         this.longitude = options.longitude;
@@ -12,28 +14,53 @@ export class Place {
         this.floors = options.floors || [];
     }
 
+    /*get machineState(): Observable<Machine[]> {
+        return this.store.select('machines');
+    }*/
+
     addMachine(machine: Machine) {
-        if (this.floors[machine.floor]) {
-            this.floors[machine.floor].machines.push(machine);
-        } else {
+        if (this.floors && this.floors[machine.floor]) {
+            this.floors[machine.floor].machines.push(machine.id);
+        } else if (this.floors) {
             this.floors[machine.floor] = {
                 level: machine.floor,
-                machines: [machine],
+                machines: [machine.id],
             };
         }
     }
 
-    getAllMachines(): Machine[] {
+    /*getAllMachines(): Observable<Machine[]> {
         if (this.floors.length) {
-            return this.floors.reduce((acc, floor) => {
-                return acc.concat(floor.machines);
-            }, [] as Machine[]);
+            return this.machineState.pipe(
+                map((machines: Machine[]) =>
+                    machines.filter(
+                        (machine: Machine) =>
+                            this.floors[machine.floor]?.machines.includes(
+                                machine.id
+                            )
+                    )
+                )
+            );
         }
 
-        return [];
+        return of([]);
     }
 
-    getMachinesByLevel(level: number): Machine[] {
-        return this.floors[level]?.machines || [];
-    }
+    getMachinesByLevel(level: number): Observable<Machine[]> {
+        if (this.floors[level]?.machines.length) {
+            return this.machineState.pipe(
+                switchMap((machines: Machine[]) =>
+                    of(
+                        this.floors[level].machines.map((id: string) => {
+                            return machines.find(
+                                (machine: Machine) => machine.id === id
+                            );
+                        })
+                    )
+                )
+            );
+        }
+
+        return of([]);
+    }*/
 }

@@ -32,7 +32,8 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@ngrx/no-typed-global-store": "off"
       }
     },
     {
