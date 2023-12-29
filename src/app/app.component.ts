@@ -5,23 +5,19 @@ import { RouterOutlet } from '@angular/router';
 import { inject } from '@vercel/analytics';
 import { injectSpeedInsights } from '@vercel/speed-insights';
 import { Store } from '@ngrx/store';
-import { MACHINES_STORE, MachinesStore } from './interfaces/machines-state';
-import { Observable, map } from 'rxjs';
-import { Machine } from './models/machine';
-import {
-    MachineCoordinate,
-    PLACES_STORE,
-    PlacesStore,
-} from './interfaces/place-state';
-import { Place } from './models/place';
+import { map } from 'rxjs';
 import { LoadMachinesAction } from './stores/machines/machines.actions';
+import { AppStore } from './interfaces/app-store';
+import {
+    selectMachineCoordinates,
+    selectPlaces,
+} from './stores/places/places.selectors';
+import { selectMachines } from './stores/machines/machines.selectors';
 
 inject();
 injectSpeedInsights({
     framework: 'angular',
 });
-
-interface AppStore extends MachinesStore, PlacesStore {}
 
 @Component({
     selector: 'app-root',
@@ -32,21 +28,14 @@ interface AppStore extends MachinesStore, PlacesStore {}
 })
 export class AppComponent implements OnInit {
     title = 'machinestream-homework';
-    /*machines$: Observable<(Machine | undefined)[]> = this.store
-        .select(MACHINES_STORE)
-        .pipe(
-            map((data) => data.entities),
-            map((data) => Object.keys(data).map((key) => data[key]))
-        );
-    places$: Observable<(Place | undefined)[]> = this.store
-        .select(PLACES_STORE)
-        .pipe(
-            map((data) => data.entities),
-            map((data) => Object.keys(data).map((key) => data[key]))
-        );
-    coordinates$: Observable<(MachineCoordinate | undefined)[]> = this.store
-        .select(PLACES_STORE)
-        .pipe(map((data) => data.machineCoordinates));*/
+
+    machines$ = this.store
+        .select(selectMachines)
+        .pipe(map((data) => Object.keys(data).map((key) => data[key])));
+    places$ = this.store
+        .select(selectPlaces)
+        .pipe(map((data) => Object.keys(data).map((key) => data[key])));
+    coordinates$ = this.store.select(selectMachineCoordinates);
 
     constructor(private store: Store<AppStore>) {}
 
