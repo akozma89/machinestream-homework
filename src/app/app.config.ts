@@ -12,6 +12,7 @@ import { provideEffects } from '@ngrx/effects';
 import { MachinesEffects } from './stores/machines/machines.effects';
 import { provideHttpClient } from '@angular/common/http';
 import { PlacesEffect } from './stores/places/places.effects';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -24,6 +25,11 @@ export const appConfig: ApplicationConfig = {
         provideEffects([MachinesEffects, PlacesEffect]),
         provideStoreDevtools({
             maxAge: 10,
+            logOnly: !environment.production,
+            autoPause: true,
+            trace: false,
+            traceLimit: 75,
+            connectInZone: true,
         }),
     ],
 };
