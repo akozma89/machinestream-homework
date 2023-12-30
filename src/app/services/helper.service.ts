@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Dictionary } from '@ngrx/entity';
+import { map } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -39,5 +41,12 @@ export class HelperService {
         if (isMiles) d /= 1.60934;
 
         return d;
+    }
+
+    static mapObjectKeysToArray() {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return map((data: Dictionary<any>) =>
+            Object.keys(data).map((key) => data[key])
+        );
     }
 }

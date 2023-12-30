@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 import { MachinesResponse } from '../interfaces/machines-response';
 import { MachineResponse } from '../interfaces/machine-response';
+import { MachineStatusWebsocketService } from './machine-status-websocket.service';
 
 @Injectable({
     providedIn: 'root',
@@ -11,7 +12,10 @@ import { MachineResponse } from '../interfaces/machine-response';
 export class MachineApiService {
     baseUrl = `${environment.apiUrl}/machines`;
 
-    constructor(private http: HttpClient) {}
+    constructor(
+        private http: HttpClient,
+        private machineStatusWebsocketService: MachineStatusWebsocketService
+    ) {}
 
     getMachines(): Observable<MachinesResponse> {
         return this.http.get<MachinesResponse>(this.baseUrl);

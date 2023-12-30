@@ -24,10 +24,10 @@ export const appConfig: ApplicationConfig = {
         }),
         provideEffects([MachinesEffects, PlacesEffect]),
         provideStoreDevtools({
-            maxAge: 10,
+            maxAge: 100,
             logOnly: !environment.production,
             autoPause: true,
-            trace: false,
+            trace: true,
             traceLimit: 75,
             connectInZone: true,
         }),

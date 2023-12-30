@@ -13,3 +13,8 @@ export const selectSelectedMachine = createSelector(
     selectMachinesFeature,
     (state) => state.selectedMachine
 );
+
+export const SelectLoading = createSelector(
+    selectMachinesFeature,
+    (state) => state.loading
+);

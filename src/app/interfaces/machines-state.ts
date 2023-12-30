@@ -9,4 +9,5 @@ export interface MachinesStore {
 
 export interface MachinesState extends EntityState<Machine> {
     selectedMachine?: Machine;
+    loading: boolean;
 }
