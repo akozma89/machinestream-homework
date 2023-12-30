@@ -14,7 +14,7 @@ export const selectSelectedMachine = createSelector(
     (state) => state.selectedMachine
 );
 
-export const SelectLoading = createSelector(
+export const selectLoading = createSelector(
     selectMachinesFeature,
     (state) => state.loading
 );
