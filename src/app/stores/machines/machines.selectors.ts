@@ -18,3 +18,6 @@ export const selectLoading = createSelector(
     selectMachinesFeature,
     (state) => state.loading
 );
+
+export const selectMachineById = (id: string) =>
+    createSelector(selectMachines, (machines) => machines[id]);

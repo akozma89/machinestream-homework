@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ListPageComponent } from './list-page.component';
+import { EventNotificationsComponent } from './event-notifications.component';
 
-describe('ListPageComponent', () => {
-  let component: ListPageComponent;
-  let fixture: ComponentFixture<ListPageComponent>;
+describe('EventNotificationsComponent', () => {
+  let component: EventNotificationsComponent;
+  let fixture: ComponentFixture<EventNotificationsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListPageComponent ]
+      declarations: [ EventNotificationsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListPageComponent);
+    fixture = TestBed.createComponent(EventNotificationsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

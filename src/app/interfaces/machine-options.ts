@@ -1,8 +1,8 @@
-import { MachineEventsOptions } from './machine-events-options';
+import { MachineEventsOptions, MachineStatus } from './machine-events-options';
 
 export interface MachineOptions {
     id: string;
-    status: string;
+    status: MachineStatus;
     machine_type: string;
     longitude: number;
     latitude: number;

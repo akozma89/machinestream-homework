@@ -1,29 +1,24 @@
-/* eslint-disable @ngrx/avoid-mapping-selectors */
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { inject } from '@vercel/analytics';
-import { injectSpeedInsights } from '@vercel/speed-insights';
+import { EventNotificationsComponent } from './components/event-notifications/event-notifications.component';
 import { Store } from '@ngrx/store';
-import { LoadMachinesAction } from './stores/machines/machines.actions';
 import { AppStore } from './interfaces/app-store';
-
-inject();
-injectSpeedInsights({
-    framework: 'angular',
-});
+import { LoadMachinesAction } from './stores/machines/machines.actions';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [CommonModule, RouterOutlet],
+    imports: [CommonModule, LayoutComponent, EventNotificationsComponent],
     templateUrl: './app.component.html',
-    styleUrl: './app.component.scss',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+    isCollapsed = false;
+
     constructor(private store: Store<AppStore>) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.store.dispatch(LoadMachinesAction());
     }
 }

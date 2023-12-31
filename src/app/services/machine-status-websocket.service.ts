@@ -1,3 +1,4 @@
+import { EventNotificationsService } from './event-notifications.service';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { Socket } from 'phoenix';
@@ -15,7 +16,10 @@ export class MachineStatusWebsocketService {
     channel: any;
     subscription$ = new Subject<MachineUpdateResponse>();
 
-    constructor(private store: Store) {
+    constructor(
+        private store: Store,
+        private eventNotificationsService: EventNotificationsService
+    ) {
         this.initializeSocket();
     }
 
@@ -32,6 +36,7 @@ export class MachineStatusWebsocketService {
                 this.store.dispatch(
                     UpdateMachineAction({ machineEvent: event })
                 );
+                this.eventNotificationsService.notifyEvent(event);
             });
             this.channel.on('new', (event: MachineUpdateResponse) =>
                 this.subscription$.next(event)
