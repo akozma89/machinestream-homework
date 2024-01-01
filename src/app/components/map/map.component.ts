@@ -12,7 +12,7 @@ import { environment } from '@environments/environment';
 import { MachineCoordinate } from '@interfaces/place-state';
 import { Machine } from '@models/machine';
 import { Place } from '@models/place';
-import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
+import mapboxgl from 'mapbox-gl';
 
 type acceptedDataType = Place | Machine | MachineCoordinate;
 type acceptedDataTypeArray = Place[] | Machine[] | MachineCoordinate[];
