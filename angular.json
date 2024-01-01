@@ -35,6 +35,7 @@
               }
             ],
             "styles": [
+              "mapbox-gl/dist/mapbox-gl.css",
               "src/theme.less",
               "src/styles.scss"
             ],
