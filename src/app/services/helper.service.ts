@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Dictionary } from '@ngrx/entity';
+import mapboxgl from 'mapbox-gl';
 import { map } from 'rxjs';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class HelperService {
         return (num * Math.PI) / 180;
     };
 
-    static haversineDistance(
+    static distanceBetween(
         coords1: {
             longitude: number;
             latitude: number;
@@ -18,29 +19,18 @@ export class HelperService {
         coords2: {
             longitude: number;
             latitude: number;
-        },
-        isMiles = false
+        }
     ) {
-        const { longitude: lon1, latitude: lat1 } = coords1;
-        const { longitude: lon2, latitude: lat2 } = coords2;
-        const R = 6371;
-        const x1 = lat2 - lat1;
-        const dLat = HelperService.toRad(x1);
-        const x2 = lon2 - lon1;
-        const dLon = HelperService.toRad(x2);
-        const a =
-            Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-            Math.cos(HelperService.toRad(lat1)) *
-                Math.cos(HelperService.toRad(lat2)) *
-                Math.sin(dLon / 2) *
-                Math.sin(dLon / 2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        const target1 = new mapboxgl.LngLat(
+            coords1.longitude,
+            coords1.latitude
+        );
+        const target2 = new mapboxgl.LngLat(
+            coords2.longitude,
+            coords2.latitude
+        );
 
-        let d = R * c;
-
-        if (isMiles) d /= 1.60934;
-
-        return d;
+        return target1.distanceTo(target2);
     }
 
     static mapObjectKeysToArray() {

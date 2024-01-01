@@ -42,8 +42,8 @@ export class PlacesEffect {
 
         machines.forEach((machine: Machine) => {
             const existingPlace: Place = places.find(
-                (p) =>
-                    HelperService.haversineDistance(p, machine) <
+                (place) =>
+                    HelperService.distanceBetween(place, machine) <
                     environment.placeAccuracyInKm
             ) as Place;
             const place =
