@@ -1,31 +1,41 @@
 import { Routes } from '@angular/router';
-import { SettingsPageComponent } from './pages/settings/components/settings-page/settings-page.component';
-import { MapPageComponent } from './pages/map/components/map-page/map-page.component';
-import { HomePageComponent } from './pages/home/components/home-page/home-page.component';
 import { NotFoundPageComponent } from './pages/not-found/components/not-found-page/not-found-page.component';
-import { MachinePageComponent } from './pages/machines/components/machine-page/machine-page.component';
-import { MachinesPageComponent } from './pages/machines/components/machines-page/machines-page.component';
 
 export const routes: Routes = [
     {
         path: '',
-        component: HomePageComponent,
+        loadComponent: () =>
+            import(
+                './pages/home/components/home-page/home-page.component'
+            ).then((m) => m.HomePageComponent),
     },
     {
         path: 'machines',
-        component: MachinesPageComponent,
+        loadComponent: () =>
+            import(
+                './pages/machines/components/machines-page/machines-page.component'
+            ).then((m) => m.MachinesPageComponent),
     },
     {
         path: 'machines/:id',
-        component: MachinePageComponent,
+        loadComponent: () =>
+            import(
+                './pages/machines/components/machine-page/machine-page.component'
+            ).then((m) => m.MachinePageComponent),
     },
     {
         path: 'map',
-        component: MapPageComponent,
+        loadComponent: () =>
+            import('./pages/map/components/map-page/map-page.component').then(
+                (m) => m.MapPageComponent
+            ),
     },
     {
         path: 'settings',
-        component: SettingsPageComponent,
+        loadComponent: () =>
+            import(
+                './pages/settings/components/settings-page/settings-page.component'
+            ).then((m) => m.SettingsPageComponent),
     },
     {
         path: '**',
