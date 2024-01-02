@@ -7,6 +7,7 @@ export enum SettingAction {
     UpdateMapView = '[Settings] Update Map View',
     UpdateNotificationLevel = '[Settings] Update Notification Level',
     UpdateNotificationFrequency = '[Settings] Update Notification Frequency',
+    UpdatePageSize = '[Settings] Update Page Size',
 }
 
 export const UpdateSettingsAction = createAction(
@@ -15,6 +16,7 @@ export const UpdateSettingsAction = createAction(
         mapView: SHOW_MAP_ITEMS;
         notificationLevel: NotificationLevelSettings;
         notificationFrequency: number;
+        tablePageSize: number;
     }>()
 );
 
@@ -31,4 +33,9 @@ export const UpdateNotificationLevelAction = createAction(
 export const UpdateNotificationFrequencyAction = createAction(
     SettingAction.UpdateNotificationFrequency,
     props<{ notificationFrequency: number }>()
+);
+
+export const UpdatePageSizeAction = createAction(
+    SettingAction.UpdatePageSize,
+    props<{ tablePageSize: number }>()
 );

@@ -1,3 +1,89 @@
-<p>
-    {{ machine$ | async | json }}
-</p>
+@if (machine$ | async; as machine) {
+    <h2>Machine Details</h2>
+    <nz-card>
+        <nz-card-meta
+            nzTitle="Current Status"
+            [nzDescription]="desrciptionTemplate"
+            [nzAvatar]="avatarTemplate"
+        ></nz-card-meta>
+        <nz-row>
+            <nz-col nzSpan="4"></nz-col>
+            <nz-col nzSpan="18"></nz-col>
+        </nz-row>
+        <ng-template #desrciptionTemplate>
+            <nz-tag [nzColor]="getStatusColor(machine.status)">
+                {{ machine.status }}
+            </nz-tag>
+        </ng-template>
+        <ng-template #avatarTemplate>
+            <nz-avatar
+                [nzSize]="128"
+                [nzSrc]="'assets/' + machine.machine_type + '.jpg'"
+            ></nz-avatar>
+        </ng-template>
+    </nz-card>
+
+    <nz-tabset>
+        <nz-tab nzTitle="Overall">
+            <nz-list [nzBordered]="false">
+                <nz-list-item nzNoFlex>
+                    <b>ID:</b>
+                    {{ machine.id }}
+                </nz-list-item>
+                <nz-list-item nzNoFlex>
+                    <b>Machine Type:</b>
+                    {{ machine.machine_type }}
+                </nz-list-item>
+                <nz-list-item nzNoFlex>
+                    <b>Status:</b>
+                    {{ machine.status }}
+                </nz-list-item>
+                <nz-list-item nzNoFlex>
+                    <b>Last Maintenance:</b>
+                    {{ machine.last_maintenance | date: 'yyyy-MM-dd HH:mm:ss' }}
+                </nz-list-item>
+                <nz-list-item nzNoFlex>
+                    <b>Install Date:</b>
+                    {{ machine.install_date | date: 'yyyy-MM-dd HH:mm:ss' }}
+                </nz-list-item>
+            </nz-list>
+        </nz-tab>
+        <nz-tab nzTitle="Events">
+            @if (machine.events?.length) {
+                <nz-list [nzBordered]="false">
+                    <nz-list-item *ngFor="let item of machine.events">
+                        <span>
+                            {{ item.timestamp | date: 'yyyy-MM-dd HH:mm:ss' }}
+                        </span>
+                        <nz-tag [nzColor]="getStatusColor(item.status)">
+                            {{ item.status }}
+                        </nz-tag>
+                    </nz-list-item>
+                </nz-list>
+            } @else {
+                <p>No events yet.</p>
+            }
+        </nz-tab>
+        <nz-tab nzTitle="Map">
+            <ng-template nz-tab>
+                <nz-list [nzBordered]="false">
+                    <nz-list-item nzNoFlex>
+                        <b>Longitude:</b>
+                        {{ machine.longitude }}
+                    </nz-list-item>
+                    <nz-list-item nzNoFlex>
+                        <b>Latitude:</b>
+                        {{ machine.latitude }}
+                    </nz-list-item>
+                    <nz-list-item nzNoFlex>
+                        <b>Floor:</b>
+                        {{ machine.floor }}
+                    </nz-list-item>
+                </nz-list>
+                <app-map [data]="[machine]"></app-map>
+            </ng-template>
+        </nz-tab>
+    </nz-tabset>
+} @else {
+    <nz-spin nzSimple [nzSize]="'large'"></nz-spin>
+}

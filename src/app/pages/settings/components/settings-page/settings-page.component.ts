@@ -46,6 +46,7 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
             finished: [environment.settings.notificationLevel.finished],
         }),
         notificationFrequency: [environment.settings.notificationFrequency],
+        tablePageSize: [environment.settings.tablePageSize],
     });
     settings$ = this.store.select(selectSettingsFeature);
     currentSettings!: SettingsState;
@@ -69,6 +70,7 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
                     },
                     notificationFrequency:
                         this.currentSettings.notificationFrequency / 1000,
+                    tablePageSize: this.currentSettings.tablePageSize,
                 });
             })
         );
@@ -90,6 +92,9 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
                             ((this.form.value.notificationFrequency *
                                 1000) as number)) ||
                         environment.settings.notificationFrequency / 1000,
+                    tablePageSize:
+                        this.form.value.tablePageSize ||
+                        environment.settings.tablePageSize,
                 })
             );
         }
@@ -104,6 +109,7 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
                 },
                 notificationFrequency:
                     this.currentSettings.notificationFrequency / 1000,
+                tablePageSize: this.currentSettings.tablePageSize,
             });
         }
     }

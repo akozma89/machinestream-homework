@@ -5,9 +5,10 @@ export const stackedDistributionOptions = {
     showYAxis: true,
     gradient: false,
     showLegend: true,
+    legendPosition: 'right' as LegendPosition,
     showXAxisLabel: true,
     showYAxisLabel: true,
-    view: undefined,
+    view: [700, 400] as [number, number],
     colorScheme: {
         domain: ['#5AA454', '#C7B42C', '#AAAAAA'],
     } as Color,
@@ -18,8 +19,8 @@ export const pieBreakdownOptions = {
     gradient: false,
     showLabels: false,
     isDoughnut: false,
-    legendPosition: 'below' as LegendPosition,
-    view: undefined,
+    legendPosition: 'right' as LegendPosition,
+    view: [700, 400] as [number, number],
     colorScheme: {
         domain: ['#5AA454', '#C7B42C', '#AAAAAA'],
     } as Color,

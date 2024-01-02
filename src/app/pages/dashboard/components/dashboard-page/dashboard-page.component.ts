@@ -4,6 +4,7 @@ import {
 } from './../../../../constants/chart.constant';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { environment } from '@environments/environment';
 import { AppStore } from '@interfaces/app-store';
 import {
     MachineColorStatusMap,
@@ -27,6 +28,7 @@ import { Observable, map } from 'rxjs';
 })
 export class DashboardPageComponent {
     readonly MachineColorStatusMap = MachineColorStatusMap;
+    readonly showMachineTypePieChart = !environment.production;
 
     machines$: Observable<Machine[]> = this.store
         .select(selectMachines)

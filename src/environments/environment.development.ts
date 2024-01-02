@@ -14,5 +14,6 @@ export const environment = {
             repaired: true,
             finished: false,
         },
+        tablePageSize: 10,
     },
 };

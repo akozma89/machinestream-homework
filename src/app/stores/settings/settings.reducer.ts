@@ -6,6 +6,7 @@ import {
     UpdateMapViewAction,
     UpdateNotificationFrequencyAction,
     UpdateNotificationLevelAction,
+    UpdatePageSizeAction,
     UpdateSettingsAction,
 } from './settings.actions';
 import { StorageService } from '@services/storage.service';
@@ -16,6 +17,7 @@ export const initialState: SettingsState = StorageService.getItem(
     mapView: SHOW_MAP_ITEMS.machines,
     notificationLevel: environment.settings.notificationLevel,
     notificationFrequency: environment.settings.notificationFrequency,
+    tablePageSize: environment.settings.tablePageSize,
 };
 
 export const settingsReducer = createReducer(
@@ -24,13 +26,14 @@ export const settingsReducer = createReducer(
         UpdateSettingsAction,
         (
             state,
-            { mapView, notificationLevel, notificationFrequency }
+            { mapView, notificationLevel, notificationFrequency, tablePageSize }
         ): SettingsState =>
             StorageService.storeItem(SETTINGS_STORE, {
                 ...state,
                 mapView,
                 notificationLevel,
                 notificationFrequency,
+                tablePageSize,
             })
     ),
     on(
@@ -58,6 +61,14 @@ export const settingsReducer = createReducer(
             StorageService.storeItem(SETTINGS_STORE, {
                 ...state,
                 notificationFrequency,
+            })
+    ),
+    on(
+        UpdatePageSizeAction,
+        (state, { tablePageSize }): SettingsState =>
+            StorageService.storeItem(SETTINGS_STORE, {
+                ...state,
+                tablePageSize,
             })
     )
 );

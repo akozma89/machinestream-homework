@@ -2,8 +2,9 @@ nz-row + nz-row {
   margin-top: 2.5vh;
 }
 
-.statistic-row nz-col {
-  padding: 10px;
+.statistic-row {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 nz-row:not(.statistic-row) {
@@ -14,26 +15,31 @@ nz-row:not(.statistic-row) nz-col {
   height: 100%;
 }
 
-nz-row:not(.statistic-row) nz-col + nz-col {
-  padding-left: 2.5vw;
+.color-info,
+.color-warning,
+.color-error,
+.color-success {
+  padding: 10px;
 }
 
-.color-info {
-  padding: 10px;
+.color-info:hover {
   background-color: #1890ff;
 }
 
-.color-warning {
-  padding: 10px;
+.color-warning:hover {
   background-color: #faad14;
 }
 
-.color-error {
-  padding: 10px;
+.color-error:hover {
   background-color: #ff4d4f;
 }
 
-.color-success {
-  padding: 10px;
+.color-success:hover {
   background-color: #52c41a;
+}
+
+@media screen and (max-width: 1199px) {
+  nz-row:not(.statistic-row) nz-col {
+    height: auto;
+  }
 }

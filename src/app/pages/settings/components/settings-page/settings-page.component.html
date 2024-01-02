@@ -29,6 +29,20 @@
             ></nz-input-number>
         </nz-form-control>
     </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="10" nzFor="tablePageSize">
+            Table Page Size
+        </nz-form-label>
+        <nz-form-control [nzSpan]="14">
+            <nz-input-number
+                id="tablePageSize"
+                formControlName="tablePageSize"
+                [nzMin]="10"
+                [nzMax]="50"
+                [nzStep]="10"
+            ></nz-input-number>
+        </nz-form-control>
+    </nz-form-item>
     <div formGroupName="notificationLevel">
         <nz-form-item>
             <nz-form-label [nzSpan]="10">Idle Notifications</nz-form-label>
@@ -62,10 +76,8 @@
         </nz-form-item>
     </div>
     <nz-form-item>
-        <nz-form-control nzSpan="24" style="text-align: center">
+        <nz-form-control>
             <button nz-button nzType="primary" type="submit">Save</button>
-        </nz-form-control>
-        <nz-form-control nzSpan="24" style="text-align: center">
             <button nz-button nzType="default" (click)="resetForm()">
                 Reset
             </button>

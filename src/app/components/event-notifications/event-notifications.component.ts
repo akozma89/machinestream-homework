@@ -75,7 +75,6 @@ export class EventNotificationsComponent implements OnInit, OnDestroy {
                     )
                 )
                 .subscribe((events) => {
-                    console.log(new Date());
                     if (events?.length) {
                         events.forEach((event) => this.showNotification(event));
                     }
