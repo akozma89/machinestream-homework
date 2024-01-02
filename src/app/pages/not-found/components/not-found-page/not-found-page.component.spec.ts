@@ -1,7 +1,7 @@
-/* tslint:disable:no-unused-variable */
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotFoundPageComponent } from './not-found-page.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('NotFoundPageComponent', () => {
     let component: NotFoundPageComponent;
@@ -9,7 +9,7 @@ describe('NotFoundPageComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [NotFoundPageComponent],
+            imports: [NotFoundPageComponent, RouterTestingModule],
         }).compileComponents();
     });
 

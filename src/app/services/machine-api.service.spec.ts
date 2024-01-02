@@ -1,4 +1,3 @@
-/* tslint:disable:no-unused-variable */
 import { TestBed } from '@angular/core/testing';
 import { MachineApiService } from './machine-api.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';

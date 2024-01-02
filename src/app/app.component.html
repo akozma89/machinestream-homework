@@ -1,2 +1,8 @@
-<app-layout></app-layout>
-<app-event-notifications></app-event-notifications>
+@if (loading$ | async) {
+    <div class="app-loader">
+        <nz-spin nzSimple nzSize="large"></nz-spin>
+    </div>
+} @else {
+    <app-layout></app-layout>
+    <app-event-notifications></app-event-notifications>
+}
