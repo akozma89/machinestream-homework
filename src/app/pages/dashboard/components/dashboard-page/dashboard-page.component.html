@@ -1,0 +1,77 @@
+<nz-row [nzGutter]="16" class="statistic-row">
+    <nz-col [nzXl]="3" [nzMd]="8" [nzXs]="24">
+        <nz-statistic
+            [nzValue]="((machines$ | async)?.length | number)!"
+            [nzTitle]="'Total Machines'"
+        ></nz-statistic>
+    </nz-col>
+    <nz-col
+        [nzXl]="3"
+        [nzMd]="8"
+        [nzXs]="24"
+        class="color-{{ MachineColorStatusMap.errored }}"
+    >
+        <nz-statistic
+            [nzValue]="((erroredMachines$ | async)?.length | number)!"
+            [nzTitle]="'Errored Machines'"
+        ></nz-statistic>
+    </nz-col>
+    <nz-col [nzXl]="3" [nzMd]="8" [nzXs]="24">
+        <nz-statistic
+            [nzValue]="((repairedMachines$ | async)?.length | number)!"
+            [nzTitle]="'Repaired Machines'"
+        ></nz-statistic>
+    </nz-col>
+    <nz-col [nzXl]="3" [nzMd]="8" [nzXs]="24">
+        <nz-statistic
+            [nzValue]="((idleMachines$ | async)?.length | number)!"
+            [nzTitle]="'Idle Machines'"
+        ></nz-statistic>
+    </nz-col>
+    <nz-col
+        [nzXl]="3"
+        [nzMd]="8"
+        [nzXs]="24"
+        class="color-{{ MachineColorStatusMap.running }}"
+    >
+        <nz-statistic
+            [nzValue]="((runningMachines$ | async)?.length | number)!"
+            [nzTitle]="'Running Machines'"
+        ></nz-statistic>
+    </nz-col>
+    <nz-col [nzXl]="3" [nzMd]="8" [nzXs]="24">
+        <nz-statistic
+            [nzValue]="((finishedMachines$ | async)?.length | number)!"
+            [nzTitle]="'Finished Machines'"
+        ></nz-statistic>
+    </nz-col>
+</nz-row>
+<nz-row>
+    <nz-col [nzXs]="12">
+        <h2>Machine Status Distribution</h2>
+        <ngx-charts-bar-horizontal-stacked
+            [scheme]="stackedMachineStatusDistribution.colorScheme"
+            [results]="stackedMachineStatusDistribution.data$ | async"
+            [gradient]="stackedMachineStatusDistribution.gradient"
+            [xAxis]="stackedMachineStatusDistribution.showXAxis"
+            [yAxis]="stackedMachineStatusDistribution.showYAxis"
+            [legend]="stackedMachineStatusDistribution.showLegend"
+            [showXAxisLabel]="stackedMachineStatusDistribution.showXAxisLabel"
+            [showYAxisLabel]="stackedMachineStatusDistribution.showYAxisLabel"
+            [xAxisLabel]="stackedMachineStatusDistribution.xAxisLabel"
+            [yAxisLabel]="stackedMachineStatusDistribution.yAxisLabel"
+        ></ngx-charts-bar-horizontal-stacked>
+    </nz-col>
+    <nz-col [nzXs]="12">
+        <h2>Machine Type Breakdown</h2>
+        <ngx-charts-pie-chart
+            [scheme]="pieMachineStatusBreakdown.colorScheme"
+            [results]="pieMachineStatusBreakdown.data$ | async"
+            [gradient]="pieMachineStatusBreakdown.gradient"
+            [legend]="pieMachineStatusBreakdown.showLegend"
+            [legendPosition]="pieMachineStatusBreakdown.legendPosition"
+            [labels]="pieMachineStatusBreakdown.showLabels"
+            [doughnut]="pieMachineStatusBreakdown.isDoughnut"
+        ></ngx-charts-pie-chart>
+    </nz-col>
+</nz-row>

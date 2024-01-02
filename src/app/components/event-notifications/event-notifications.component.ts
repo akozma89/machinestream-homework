@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { MachineStatusMap } from '../../interfaces/machine-events-options';
+import { MachineColorStatusMap } from '../../interfaces/machine-events-options';
 import { Subscription, bufferWhen, interval } from 'rxjs';
 import { AppStore } from '@interfaces/app-store';
 import { Store } from '@ngrx/store';
@@ -91,11 +91,11 @@ export class EventNotificationsComponent implements OnInit, OnDestroy {
         if (this.settings.notificationLevel[event.status]) {
             this.notificationService.template(this.template!, {
                 nzData: {
-                    color: MachineStatusMap[event.status],
+                    color: MachineColorStatusMap[event.status],
                     machine_id: event.machine_id,
                     status: event.status,
                 },
-                nzClass: MachineStatusMap[event.status],
+                nzClass: MachineColorStatusMap[event.status],
                 nzPlacement: 'bottomRight',
             });
         }

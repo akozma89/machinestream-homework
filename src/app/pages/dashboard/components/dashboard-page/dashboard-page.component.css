@@ -1,0 +1,39 @@
+nz-row + nz-row {
+  margin-top: 2.5vh;
+}
+
+.statistic-row nz-col {
+  padding: 10px;
+}
+
+nz-row:not(.statistic-row) {
+  height: 50vh;
+}
+
+nz-row:not(.statistic-row) nz-col {
+  height: 100%;
+}
+
+nz-row:not(.statistic-row) nz-col + nz-col {
+  padding-left: 2.5vw;
+}
+
+.color-info {
+  padding: 10px;
+  background-color: #1890ff;
+}
+
+.color-warning {
+  padding: 10px;
+  background-color: #faad14;
+}
+
+.color-error {
+  padding: 10px;
+  background-color: #ff4d4f;
+}
+
+.color-success {
+  padding: 10px;
+  background-color: #52c41a;
+}
