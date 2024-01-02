@@ -81,7 +81,7 @@
         [yAxisLabel]="stackedMachineStatusDistribution.yAxisLabel"
     ></ngx-charts-bar-horizontal-stacked>
 </nz-row>
-<nz-row>
+<nz-row *ngIf="showMachineTypePieChart">
     <h2>Machine Type Breakdown</h2>
     <ngx-charts-pie-chart
         [scheme]="pieMachineStatusBreakdown.colorScheme"
