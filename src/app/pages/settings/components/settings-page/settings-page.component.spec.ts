@@ -1,28 +1,56 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SettingsPageComponent } from './settings-page.component';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { Store } from '@ngrx/store';
+import { AppStore } from '@interfaces/app-store';
+import { SETTINGS_STORE } from '@interfaces/settings-state';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe('SettingsPageComponent', () => {
-  let component: SettingsPageComponent;
-  let fixture: ComponentFixture<SettingsPageComponent>;
+    let component: SettingsPageComponent;
+    let fixture: ComponentFixture<SettingsPageComponent>;
+    let store: MockStore<AppStore>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SettingsPageComponent ]
-    })
-    .compileComponents();
-  }));
+    const initialState = {
+        [SETTINGS_STORE]: {
+            mapView: 'machines',
+            notificationLevel: {
+                idle: true,
+                running: true,
+                errored: true,
+                repaired: true,
+                finished: true,
+            },
+            notificationFrequency: 5,
+            tablePageSize: 10,
+        },
+    };
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SettingsPageComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [SettingsPageComponent],
+            providers: [
+                provideMockStore({
+                    initialState,
+                }),
+                provideAnimations(),
+            ],
+        }).compileComponents();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+        store = TestBed.get<Store>(Store);
+        fixture = TestBed.createComponent(SettingsPageComponent);
+        component = fixture.componentInstance;
+    });
+
+    it('should create SettingsPageComponent', () => {
+        // WHEN
+        fixture.detectChanges();
+
+        // THEN
+        expect(component).toBeTruthy();
+        expect(store).toBeTruthy();
+        expect(fixture.nativeElement).toBeTruthy();
+    });
 });

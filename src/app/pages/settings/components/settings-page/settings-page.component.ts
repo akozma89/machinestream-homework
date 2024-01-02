@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { selectSettingsFeature } from '@stores/settings/settings.selectors';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { FormBuilder } from '@angular/forms';
-import { SHOW_MAP_ITEMS } from 'app/constants/map.constant';
+import { SHOW_MAP_ITEMS } from '@constants/map.constant';
 import { environment } from '@environments/environment';
 import { Subscription } from 'rxjs';
 import { UpdateSettingsAction } from '@stores/settings/settings.actions';

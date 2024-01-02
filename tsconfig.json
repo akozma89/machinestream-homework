@@ -5,6 +5,7 @@
     "baseUrl": "./src",
     "paths": {
       "@components/*": ["app/components/*"],
+      "@constants/*": ["app/constants/*"],
       "@interfaces/*": ["app/interfaces/*"],
       "@models/*": ["app/models/*"],
       "@pages/*": ["app/pages/*"],

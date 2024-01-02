@@ -1,28 +1,46 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LayoutComponent } from './layout.component';
+import { ActivatedRoute } from '@angular/router';
+import { NzIconTestModule } from 'ng-zorro-antd/icon/testing';
 
 describe('LayoutComponent', () => {
-  let component: LayoutComponent;
-  let fixture: ComponentFixture<LayoutComponent>;
+    let component: LayoutComponent;
+    let fixture: ComponentFixture<LayoutComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ LayoutComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            imports: [LayoutComponent, NzIconTestModule],
+            providers: [
+                {
+                    provide: ActivatedRoute,
+                    useValue: {
+                        snapshot: { params: { id: '1' } },
+                    },
+                },
+            ],
+        }).compileComponents();
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LayoutComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(LayoutComponent);
+        component = fixture.componentInstance;
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create LayoutComponent', () => {
+        // THEN
+        expect(component).toBeTruthy();
+        expect(fixture.nativeElement).toBeTruthy();
+    });
+
+    describe('toggleCollapsed', () => {
+        it('should toggle isCollapsed', () => {
+            // GIVEN
+            component.isCollapsed = false;
+
+            // WHEN
+            component.toggleCollapsed();
+
+            // THEN
+            expect(component.isCollapsed).toBeTrue();
+        });
+    });
 });

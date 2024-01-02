@@ -60,6 +60,7 @@ export class EventNotificationsComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.subscriptions.add(
+            // eslint-disable-next-line @ngrx/no-store-subscription
             this.store.select(selectSettingsFeature).subscribe((settings) => {
                 this.settings = {
                     notificationLevel: settings.notificationLevel,

@@ -1,7 +1,7 @@
 import { environment } from '@environments/environment';
 import { SETTINGS_STORE, SettingsState } from '@interfaces/settings-state';
 import { createReducer, on } from '@ngrx/store';
-import { SHOW_MAP_ITEMS } from 'app/constants/map.constant';
+import { SHOW_MAP_ITEMS } from '@constants/map.constant';
 import {
     UpdateMapViewAction,
     UpdateNotificationFrequencyAction,

@@ -1,7 +1,7 @@
 import {
     stackedDistributionOptions,
     pieBreakdownOptions,
-} from './../../../../constants/chart.constant';
+} from '@constants/chart.constant';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { environment } from '@environments/environment';

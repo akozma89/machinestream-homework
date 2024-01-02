@@ -1,6 +1,6 @@
 import { NotificationLevelSettings } from '@interfaces/settings-state';
 import { createAction, props } from '@ngrx/store';
-import { SHOW_MAP_ITEMS } from 'app/constants/map.constant';
+import { SHOW_MAP_ITEMS } from '@constants/map.constant';
 
 export enum SettingAction {
     UpdateSettingsAction = '[Settings] Update All Settings',

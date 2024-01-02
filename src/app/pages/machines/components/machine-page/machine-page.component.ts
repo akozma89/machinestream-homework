@@ -1,10 +1,10 @@
-import { MachineColorStatusMap } from './../../../../interfaces/machine-events-options';
+import { MachineColorStatusMap } from '@interfaces/machine-events-options';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppStore } from '../../../../interfaces/app-store';
+import { AppStore } from '@interfaces/app-store';
 import { ActivatedRoute } from '@angular/router';
-import { Machine } from '../../../../models/machine';
-import { selectMachineById } from '../../../../stores/machines/machines.selectors';
+import { Machine } from '@models/machine';
+import { selectMachineById } from '@stores/machines/machines.selectors';
 import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { NzGridModule } from 'ng-zorro-antd/grid';

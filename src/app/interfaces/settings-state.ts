@@ -1,4 +1,4 @@
-import { SHOW_MAP_ITEMS } from 'app/constants/map.constant';
+import { SHOW_MAP_ITEMS } from '@constants/map.constant';
 
 export const SETTINGS_STORE = 'settingsStore';
 

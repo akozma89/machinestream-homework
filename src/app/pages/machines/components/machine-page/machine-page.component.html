@@ -49,7 +49,7 @@
             </nz-list>
         </nz-tab>
         <nz-tab nzTitle="Events">
-            @if (machine.events?.length) {
+            @if (machine.events.length) {
                 <nz-list [nzBordered]="false">
                     <nz-list-item *ngFor="let item of machine.events">
                         <span>

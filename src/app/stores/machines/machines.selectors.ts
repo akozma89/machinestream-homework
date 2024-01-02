@@ -21,3 +21,11 @@ export const selectLoading = createSelector(
 
 export const selectMachineById = (id: string) =>
     createSelector(selectMachines, (machines) => machines[id]);
+
+export default {
+    selectMachinesFeature,
+    selectMachines,
+    selectSelectedMachine,
+    selectLoading,
+    selectMachineById,
+};
