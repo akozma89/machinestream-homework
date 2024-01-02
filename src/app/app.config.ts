@@ -20,6 +20,8 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { SETTINGS_STORE } from '@interfaces/settings-state';
+import { settingsReducer } from '@stores/settings/settings.reducer';
 
 registerLocaleData(en);
 
@@ -30,6 +32,7 @@ export const appConfig: ApplicationConfig = {
         provideStore({
             [MACHINES_STORE]: machinesReducer,
             [PLACES_STORE]: placesReducer,
+            [SETTINGS_STORE]: settingsReducer,
         }),
         provideEffects([MachinesEffects, PlacesEffect]),
         provideStoreDevtools({

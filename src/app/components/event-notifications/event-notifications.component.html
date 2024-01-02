@@ -1,0 +1,24 @@
+<ng-template let-data="data">
+    <div
+        nz-row
+        class="notification"
+        [routerLink]="['/machines', data.machine_id]"
+    >
+        <div nz-col nzSpan="6">
+            <div nz-row>
+                <span>Machine ID:</span>
+            </div>
+            <div nz-row>
+                <span>Status:</span>
+            </div>
+        </div>
+        <div nz-col nzSpan="18">
+            <div nz-row>
+                <span class="link">{{ data.machine_id }}</span>
+            </div>
+            <div nz-row>
+                <nz-tag [nzColor]="data.color">{{ data.status }}</nz-tag>
+            </div>
+        </div>
+    </div>
+</ng-template>

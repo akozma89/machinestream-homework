@@ -31,11 +31,6 @@ export class MapComponent implements AfterViewInit, OnChanges {
     map!: mapboxgl.Map;
     markers: mapboxgl.Marker[] = [];
 
-    readonly options = {
-        center: { lat: 40, lng: -20 },
-        zoom: 4,
-    };
-
     constructor() {
         mapboxgl.accessToken = environment.mapboxToken;
     }
@@ -66,7 +61,7 @@ export class MapComponent implements AfterViewInit, OnChanges {
                 },
                 [0, 0]
             ),
-            zoom: 9,
+            zoom: 18,
         });
         this.data?.forEach((target) => this.addMarker(target));
     }

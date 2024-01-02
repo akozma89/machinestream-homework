@@ -44,7 +44,7 @@ export class PlacesEffect {
             const existingPlace: Place = places.find(
                 (place) =>
                     HelperService.distanceBetween(place, machine) <
-                    environment.placeAccuracyInKm
+                    environment.settings.placeAccuracyInKm
             ) as Place;
             const place =
                 existingPlace ||

@@ -1,0 +1,6 @@
+.notification {
+  cursor: pointer;
+  font-size: .75rem;
+  padding-right: 22px;
+  line-height: 1.6;
+}

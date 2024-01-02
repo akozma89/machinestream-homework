@@ -3,7 +3,7 @@ import { Place } from '../../models/place';
 import { Machine } from '../../models/machine';
 import { MachineCoordinate } from '../../interfaces/place-state';
 
-export enum MachineActionTypes {
+export enum PlaceActionTypes {
     LoadMachineCoordinates = '[Place] Load Machine Coordinates',
     LoadPlaces = '[Place] Load Places',
     LoadPlacesSuccess = '[Place] Load Places Success',
@@ -14,36 +14,36 @@ export enum MachineActionTypes {
 }
 
 export const LoadMachineCoordinates = createAction(
-    MachineActionTypes.LoadMachineCoordinates,
+    PlaceActionTypes.LoadMachineCoordinates,
     props<{ coordinates: MachineCoordinate[] }>()
 );
 
 export const LoadPlacesAction = createAction(
-    MachineActionTypes.LoadPlaces,
+    PlaceActionTypes.LoadPlaces,
     props<{ machines: Machine[] }>()
 );
 
 export const LoadPlacesSuccessAction = createAction(
-    MachineActionTypes.LoadPlacesSuccess,
+    PlaceActionTypes.LoadPlacesSuccess,
     props<{ places: Place[] }>()
 );
 
 export const LoadPlacesErrorAction = createAction(
-    MachineActionTypes.LoadPlacesError,
+    PlaceActionTypes.LoadPlacesError,
     props<{ error: Error }>()
 );
 
 export const AddPlaceAction = createAction(
-    MachineActionTypes.AddPlace,
+    PlaceActionTypes.AddPlace,
     props<{ place: Place }>()
 );
 
 export const RemovePlaceAction = createAction(
-    MachineActionTypes.RemovePlace,
+    PlaceActionTypes.RemovePlace,
     props<{ placeId: Place['id'] }>()
 );
 
 export const SelectPlaceAction = createAction(
-    MachineActionTypes.SelectPlace,
+    PlaceActionTypes.SelectPlace,
     props<{ place: Place }>()
 );

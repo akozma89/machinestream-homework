@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppStore } from '../../../../interfaces/app-store';
 import { ActivatedRoute } from '@angular/router';
 import { Machine } from '../../../../models/machine';
 import { selectMachineById } from '../../../../stores/machines/machines.selectors';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,8 +14,10 @@ import { CommonModule } from '@angular/common';
     styleUrls: ['./machine-page.component.css'],
     imports: [CommonModule],
 })
-export class MachinePageComponent implements OnInit {
+export class MachinePageComponent implements OnInit, OnDestroy {
     machine$!: Observable<Machine | undefined>;
+
+    private subscriptions = new Subscription();
 
     constructor(
         private store: Store<AppStore>,
@@ -23,10 +25,16 @@ export class MachinePageComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.machine$ = this.store.select(
-            selectMachineById(
-                this.activatedRoute.snapshot.paramMap.get('id') || ''
-            )
+        this.subscriptions.add(
+            this.activatedRoute.paramMap.subscribe((params) => {
+                this.machine$ = this.store.select(
+                    selectMachineById(params.get('id') || '')
+                );
+            })
         );
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
     }
 }

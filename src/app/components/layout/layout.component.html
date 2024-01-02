@@ -22,24 +22,29 @@
             nzMode="inline"
             [nzInlineCollapsed]="isCollapsed"
         >
-            <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-                <ul>
-                    <li nz-menu-item nzMatchRouter>
-                        <a routerLink="/home">Home</a>
-                    </li>
-                    <li nz-menu-item nzMatchRouter>
-                        <a routerLink="/machines">List</a>
-                    </li>
-                    <li nz-menu-item nzMatchRouter>
-                        <a routerLink="/map">Map</a>
-                    </li>
-                    <li nz-menu-item nzMatchRouter>
-                        <a routerLink="/settings">Settings</a>
-                    </li>
-                    <li nz-menu-item nzMatchRouter>
-                        <a routerLink="/not-found">Not found</a>
-                    </li>
-                </ul>
+            <li nz-menu-item nzMatchRouter nzMatchRouterExact>
+                <a routerLink="/">
+                    <span nz-icon nzType="dashboard" nzTheme="outline"></span>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/machines">
+                    <span nz-icon nzType="table" nzTheme="outline"></span>
+                    <span>Machines</span>
+                </a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/map">
+                    <span nz-icon nzType="global" nzTheme="outline"></span>
+                    <span>Map</span>
+                </a>
+            </li>
+            <li nz-menu-item nzMatchRouter>
+                <a routerLink="/settings">
+                    <span nz-icon nzType="setting" nzTheme="outline"></span>
+                    <span>Settings</span>
+                </a>
             </li>
         </ul>
     </nz-sider>

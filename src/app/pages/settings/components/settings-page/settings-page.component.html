@@ -1,3 +1,74 @@
-<p>
-  settings-page works!
-</p>
+<h1>Settings</h1>
+<form nz-form nzLayout="vertical" [formGroup]="form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="10" nzFor="mapView">Map View</nz-form-label>
+        <nz-form-control [nzSpan]="14">
+            <nz-select id="mapView" formControlName="mapView">
+                <nz-option
+                    [nzValue]="SHOW_MAP_ITEMS.machines"
+                    nzLabel="Show Machines"
+                ></nz-option>
+                <nz-option
+                    [nzValue]="SHOW_MAP_ITEMS.places"
+                    nzLabel="Show Places"
+                ></nz-option>
+            </nz-select>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="10" nzFor="notificationFrequency">
+            Notification Frequency
+        </nz-form-label>
+        <nz-form-control [nzSpan]="14">
+            <nz-input-number
+                id="notificationFrequency"
+                formControlName="notificationFrequency"
+                [nzMin]="1"
+                [nzMax]="60"
+                [nzStep]="1"
+            ></nz-input-number>
+        </nz-form-control>
+    </nz-form-item>
+    <div formGroupName="notificationLevel">
+        <nz-form-item>
+            <nz-form-label [nzSpan]="10">Idle Notifications</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <nz-switch formControlName="idle"></nz-switch>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="10">Running Notifications</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <nz-switch formControlName="running"></nz-switch>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="10">Errored Notifications</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <nz-switch formControlName="errored"></nz-switch>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="10">Repaired Notifications</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <nz-switch formControlName="repaired"></nz-switch>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="10">Finished Notifications</nz-form-label>
+            <nz-form-control [nzSpan]="14">
+                <nz-switch formControlName="finished"></nz-switch>
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+    <nz-form-item>
+        <nz-form-control nzSpan="24" style="text-align: center">
+            <button nz-button nzType="primary" type="submit">Save</button>
+        </nz-form-control>
+        <nz-form-control nzSpan="24" style="text-align: center">
+            <button nz-button nzType="default" (click)="resetForm()">
+                Reset
+            </button>
+        </nz-form-control>
+    </nz-form-item>
+</form>
