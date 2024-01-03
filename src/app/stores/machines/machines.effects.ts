@@ -18,7 +18,14 @@ export class MachinesEffects {
             switchMap(() =>
                 this.machineApiService.getMachines().pipe(
                     map(({ data }) =>
-                        data.map((machine) => new Machine(machine))
+                        data.map(
+                            (machine) =>
+                                new Machine({
+                                    ...machine,
+                                    longitude: machine.latitude,
+                                    latitude: machine.longitude,
+                                })
+                        )
                     ),
                     switchMap((machines) =>
                         of(

@@ -68,7 +68,10 @@ export class MapComponent implements AfterViewInit, OnChanges {
 
     addMarker(target: acceptedDataType): void {
         const marker = new mapboxgl.Marker()
-            .setLngLat([target.longitude, target.latitude])
+            .setLngLat({
+                lng: target.longitude,
+                lat: target.latitude,
+            })
             .addTo(this.map);
         this.markers.push(marker);
     }
