@@ -7,6 +7,7 @@ import { LoadMachinesAction } from './stores/machines/machines.actions';
 import { LayoutComponent } from './components/layout/layout.component';
 import { selectLoading } from '@stores/machines/machines.selectors';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { inject } from '@vercel/analytics';
 
 @Component({
     selector: 'app-root',
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
     constructor(private store: Store<AppStore>) {}
 
     ngOnInit(): void {
+        inject();
         this.store.dispatch(LoadMachinesAction());
     }
 }
