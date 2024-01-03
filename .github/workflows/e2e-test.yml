@@ -34,10 +34,10 @@ jobs:
         with:
           runTests: false
           build: npm run build
-          wait-on: 'http://localhost:4200/'
-          wait-on-timeout: 600
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           start: npm start
           browser: chrome
+          wait-on: 'http://localhost:4200/'
+          wait-on-timeout: 300
