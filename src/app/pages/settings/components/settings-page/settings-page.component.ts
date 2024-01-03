@@ -18,6 +18,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
     standalone: true,
@@ -56,7 +57,8 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
 
     constructor(
         private store: Store<AppStore>,
-        private formBuilder: FormBuilder
+        private formBuilder: FormBuilder,
+        private notificationService: NzNotificationService,
     ) {}
 
     ngOnInit(): void {
@@ -96,6 +98,10 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
                         this.form.value.tablePageSize ||
                         environment.settings.tablePageSize,
                 })
+            );
+            this.notificationService.success(
+                'Settings updated',
+                'Settings have been updated successfully'
             );
         }
     }
