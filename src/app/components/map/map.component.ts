@@ -5,6 +5,8 @@ import {
     ElementRef,
     Input,
     OnChanges,
+    OnDestroy,
+    OnInit,
     SimpleChanges,
     ViewChild,
 } from '@angular/core';
@@ -13,6 +15,8 @@ import { MachineCoordinate } from '@interfaces/place-state';
 import { Machine } from '@models/machine';
 import { Place } from '@models/place';
 import mapboxgl from 'mapbox-gl';
+import { NgxResizeObserverModule } from 'ngx-resize-observer';
+import { Subject, Subscription, debounceTime } from 'rxjs';
 
 type acceptedDataType = Place | Machine | MachineCoordinate;
 type acceptedDataTypeArray = Place[] | Machine[] | MachineCoordinate[];
@@ -22,17 +26,34 @@ type acceptedDataTypeArray = Place[] | Machine[] | MachineCoordinate[];
     selector: 'app-map',
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.css'],
-    imports: [CommonModule],
+    imports: [CommonModule, NgxResizeObserverModule],
 })
-export class MapComponent implements AfterViewInit, OnChanges {
+export class MapComponent
+    implements OnInit, OnDestroy, AfterViewInit, OnChanges
+{
     @Input() data: acceptedDataTypeArray | null = [];
     @ViewChild('map') mapElement!: ElementRef;
 
     map!: mapboxgl.Map;
     markers: mapboxgl.Marker[] = [];
 
+    private resize$ = new Subject<void>();
+    private subscriptions = new Subscription();
+
     constructor() {
         mapboxgl.accessToken = environment.mapboxToken;
+    }
+
+    ngOnInit(): void {
+        this.subscriptions.add(
+            this.resize$
+                .pipe(debounceTime(100))
+                .subscribe(() => this.resizeMap())
+        );
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -79,5 +100,14 @@ export class MapComponent implements AfterViewInit, OnChanges {
     removeMarkers(): void {
         this.markers.forEach((marker) => marker.remove());
         this.markers = [];
+    }
+
+    triggerResize(): void {
+        this.resize$.next();
+    }
+
+    resizeMap(): void {
+        console.log('resize');
+        this.map.resize();
     }
 }

@@ -1,0 +1,7 @@
+@media (max-width: 768px) {
+  tr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}

@@ -40,3 +40,9 @@ nz-layout nz-content .inner-content {
 .padding-right {
   padding-right: 1rem;
 }
+
+@media screen and (max-width: 767px) {
+  .hidden-mobile {
+    display: none;
+  }
+}

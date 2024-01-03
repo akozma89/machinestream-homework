@@ -34,6 +34,7 @@
     "@vercel/speed-insights": "^1.0.2",
     "mapbox-gl": "^2.15.0",
     "ng-zorro-antd": "^17.1.0",
+    "ngx-resize-observer": "^2.6.0",
     "phoenix": "^1.7.10",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

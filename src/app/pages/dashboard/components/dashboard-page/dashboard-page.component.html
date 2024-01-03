@@ -66,7 +66,7 @@
         ></nz-statistic>
     </nz-col>
 </nz-row>
-<nz-row>
+<nz-row class="hidden-mobile">
     <h2>Machine Status Distribution</h2>
     <ngx-charts-bar-horizontal-stacked
         [scheme]="stackedMachineStatusDistribution.colorScheme"
@@ -81,7 +81,7 @@
         [yAxisLabel]="stackedMachineStatusDistribution.yAxisLabel"
     ></ngx-charts-bar-horizontal-stacked>
 </nz-row>
-<nz-row *ngIf="showMachineTypePieChart">
+<nz-row *ngIf="showMachineTypePieChart" class="hidden-mobile">
     <h2>Machine Type Breakdown</h2>
     <ngx-charts-pie-chart
         [scheme]="pieMachineStatusBreakdown.colorScheme"

@@ -1,1 +1,1 @@
-<div #map *ngIf="data"></div>
+<div #map (onResize)="triggerResize()" *ngIf="data"></div>
