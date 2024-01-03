@@ -6,6 +6,7 @@
         class="color-{{ MachineColorStatusMap.idle }}"
     >
         <nz-statistic
+            [routerLink]="['/machines']"
             [nzValue]="((machines$ | async)?.length | number)!"
             [nzTitle]="'Total Machines'"
         ></nz-statistic>
@@ -17,6 +18,8 @@
         class="color-{{ MachineColorStatusMap.errored }}"
     >
         <nz-statistic
+            [routerLink]="['/machines']"
+            [queryParams]="{ statusFilters: 'errored' }"
             [nzValue]="((erroredMachines$ | async)?.length | number)!"
             [nzTitle]="'Errored Machines'"
         ></nz-statistic>
@@ -28,6 +31,8 @@
         class="color-{{ MachineColorStatusMap.repaired }}"
     >
         <nz-statistic
+            [routerLink]="['/machines']"
+            [queryParams]="{ statusFilters: 'repaired' }"
             [nzValue]="((repairedMachines$ | async)?.length | number)!"
             [nzTitle]="'Repaired Machines'"
         ></nz-statistic>
@@ -39,6 +44,8 @@
         class="color-{{ MachineColorStatusMap.idle }}"
     >
         <nz-statistic
+            [routerLink]="['/machines']"
+            [queryParams]="{ statusFilters: 'idle' }"
             [nzValue]="((idleMachines$ | async)?.length | number)!"
             [nzTitle]="'Idle Machines'"
         ></nz-statistic>
@@ -50,6 +57,8 @@
         class="color-{{ MachineColorStatusMap.running }}"
     >
         <nz-statistic
+            [routerLink]="['/machines']"
+            [queryParams]="{ statusFilters: 'running' }"
             [nzValue]="((runningMachines$ | async)?.length | number)!"
             [nzTitle]="'Running Machines'"
         ></nz-statistic>
@@ -61,6 +70,8 @@
         class="color-{{ MachineColorStatusMap.finished }}"
     >
         <nz-statistic
+            [routerLink]="['/machines']"
+            [queryParams]="{ statusFilters: 'finished' }"
             [nzValue]="((finishedMachines$ | async)?.length | number)!"
             [nzTitle]="'Finished Machines'"
         ></nz-statistic>
@@ -69,6 +80,7 @@
 <nz-row class="hidden-mobile">
     <h2>Machine Status Distribution</h2>
     <ngx-charts-bar-horizontal-stacked
+        (select)="selectChartItem($event)"
         [scheme]="stackedMachineStatusDistribution.colorScheme"
         [results]="stackedMachineStatusDistribution.data$ | async"
         [gradient]="stackedMachineStatusDistribution.gradient"

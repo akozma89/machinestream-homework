@@ -7,6 +7,10 @@ nz-row + nz-row {
   border-radius: 5px;
 }
 
+nz-statistic {
+  cursor: pointer;
+}
+
 nz-row:not(.statistic-row) {
   height: 50vh;
 }
@@ -22,8 +26,13 @@ nz-row:not(.statistic-row) nz-col {
   padding: 10px;
 }
 
+.color-info {
+  transition: background-color 0.3s ease;
+  background-color: transparent;
+}
+
 .color-info:hover {
-  background-color: #1890ff;
+  background-color: #1682e7;
 }
 
 .color-warning:hover {
@@ -31,11 +40,11 @@ nz-row:not(.statistic-row) nz-col {
 }
 
 .color-error:hover {
-  background-color: #ff4d4f;
+  background-color: #cf4648;
 }
 
 .color-success:hover {
-  background-color: #52c41a;
+  background-color: #5AA454;
 }
 
 @media screen and (max-width: 1199px) {

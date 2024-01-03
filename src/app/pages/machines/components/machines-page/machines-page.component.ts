@@ -1,6 +1,6 @@
-import { RouterModule } from '@angular/router';
+import { RouterModule, ActivatedRoute, ParamMap } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
     NzTableFilterFn,
@@ -9,14 +9,17 @@ import {
     NzTableSortFn,
     NzTableSortOrder,
 } from 'ng-zorro-antd/table';
-import { AppStore } from '../../../../interfaces/app-store';
-import { Machine } from '../../../../models/machine';
-import { selectMachines } from '../../../../stores/machines/machines.selectors';
-import { HelperService } from '../../../../services/helper.service';
-import { Observable } from 'rxjs';
-import { MachineStatusMap } from '@interfaces/machine-events-options';
+import { AppStore } from '@interfaces/app-store';
+import { Machine } from '@models/machine';
+import { selectMachines } from '@stores/machines/machines.selectors';
+import { HelperService } from '@services/helper.service';
+import { Observable, Subscription } from 'rxjs';
 import { selectSettingsFeature } from '@stores/settings/settings.selectors';
 import { UpdatePageSizeAction } from '@stores/settings/settings.actions';
+import {
+    MachineStatusFilters,
+    StatusFilterOption,
+} from '@interfaces/machine-events-options';
 
 interface ColumnItem {
     left?: boolean;
@@ -36,7 +39,7 @@ interface ColumnItem {
     styleUrls: ['./machines-page.component.css'],
     imports: [CommonModule, NzTableModule, RouterModule],
 })
-export class MachinesPageComponent {
+export class MachinesPageComponent implements OnInit, OnDestroy {
     machines$: Observable<Machine[]> = this.store
         .select(selectMachines)
         .pipe(HelperService.mapObjectKeysToArray());
@@ -77,13 +80,7 @@ export class MachinesPageComponent {
                 a.status.localeCompare(b.status),
             sortDirections: ['ascend', 'descend', null],
             filterMultiple: true,
-            listOfFilter: [
-                { text: 'Idle', value: MachineStatusMap.idle },
-                { text: 'Running', value: MachineStatusMap.running },
-                { text: 'Errored', value: MachineStatusMap.errored },
-                { text: 'Repaired', value: MachineStatusMap.repaired },
-                { text: 'Finished', value: MachineStatusMap.finished },
-            ],
+            listOfFilter: MachineStatusFilters,
             filterFn: (list: string[], item: Machine) =>
                 list.some((status) => item.status.indexOf(status) !== -1),
         },
@@ -119,9 +116,51 @@ export class MachinesPageComponent {
         },
     ];
 
-    constructor(private store: Store<AppStore>) {}
+    private subscriptions = new Subscription();
+
+    constructor(
+        private store: Store<AppStore>,
+        private activatedRoute: ActivatedRoute
+    ) {}
+
+    ngOnInit(): void {
+        this.subscriptions.add(
+            this.activatedRoute.queryParamMap.subscribe((params) => {
+                this.filerOnStatusQueryParams(params);
+                this.filterOnMachineTypeQueryParams(params);
+            })
+        );
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.unsubscribe();
+    }
 
     onPageSizeChange(tablePageSize: number): void {
         this.store.dispatch(UpdatePageSizeAction({ tablePageSize }));
+    }
+
+    filerOnStatusQueryParams(params: ParamMap): void {
+        const statusParam: string[] =
+            params.get('statusFilters')?.split(',') || [];
+
+        this.listOfColumns[2].listOfFilter.forEach(
+            (filter: StatusFilterOption) => {
+                filter.byDefault = !!statusParam.some(
+                    (status) => status === filter.value
+                );
+            }
+        );
+    }
+
+    filterOnMachineTypeQueryParams(params: ParamMap): void {
+        const machineTypeParam: string[] =
+            params.get('machineTypeFilters')?.split(',') || [];
+
+        this.listOfColumns[1].listOfFilter.forEach((filter) => {
+            filter.byDefault = !!machineTypeParam.some(
+                (machineType) => machineType === filter.value
+            );
+        });
     }
 }

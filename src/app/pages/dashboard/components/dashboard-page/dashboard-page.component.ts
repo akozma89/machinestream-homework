@@ -1,3 +1,4 @@
+import { Router, RouterLink } from '@angular/router';
 import {
     stackedDistributionOptions,
     pieBreakdownOptions,
@@ -24,7 +25,13 @@ import { Observable, map } from 'rxjs';
     selector: 'app-dashboard-page',
     templateUrl: './dashboard-page.component.html',
     styleUrls: ['./dashboard-page.component.css'],
-    imports: [CommonModule, NzGridModule, NzStatisticModule, NgxChartsModule],
+    imports: [
+        CommonModule,
+        NzGridModule,
+        NzStatisticModule,
+        NgxChartsModule,
+        RouterLink,
+    ],
 })
 export class DashboardPageComponent {
     readonly MachineColorStatusMap = MachineColorStatusMap;
@@ -87,9 +94,26 @@ export class DashboardPageComponent {
         ),
     };
 
-    constructor(private store: Store<AppStore>) {}
+    constructor(
+        private store: Store<AppStore>,
+        private router: Router
+    ) {}
 
-    buildStackedMachineStatusDistribution(machines: Machine[]) {
+    selectChartItem(event: {
+        name: string;
+        value: number;
+        label: string;
+        series: string;
+    }) {
+        this.router.navigate(['/machines'], {
+            queryParams: {
+                machineTypeFilters: event.label.toLowerCase(),
+                statusFilters: event.series.toLowerCase(),
+            },
+        });
+    }
+
+    private buildStackedMachineStatusDistribution(machines: Machine[]) {
         const machineTypes = machines.reduce(
             (acc: string[], machine: Machine) => {
                 if (!acc.includes(machine.machine_type)) {
@@ -169,7 +193,7 @@ export class DashboardPageComponent {
         return [idle, running, errored, repaired, finished];
     }
 
-    buildPieMachineStatusBreakdown(machines: Machine[]) {
+    private buildPieMachineStatusBreakdown(machines: Machine[]) {
         const machineTypes = machines.reduce(
             (acc: string[], machine: Machine) => {
                 if (!acc.includes(machine.machine_type)) {
