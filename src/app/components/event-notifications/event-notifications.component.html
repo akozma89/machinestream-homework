@@ -3,6 +3,7 @@
         nz-row
         class="notification"
         [routerLink]="['/machines', data.machine_id]"
+        [queryParams]="{ tab: 'events' }"
     >
         <div nz-col nzSpan="6">
             <div nz-row>

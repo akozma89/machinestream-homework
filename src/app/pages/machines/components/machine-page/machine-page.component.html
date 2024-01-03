@@ -11,6 +11,7 @@
             <nz-col nzSpan="18"></nz-col>
         </nz-row>
         <ng-template #desrciptionTemplate>
+            <p>ID: {{ machine.id }}</p>
             <nz-tag [nzColor]="getStatusColor(machine.status)">
                 {{ machine.status }}
             </nz-tag>
@@ -22,8 +23,7 @@
             ></nz-avatar>
         </ng-template>
     </nz-card>
-
-    <nz-tabset>
+    <nz-tabset [nzSelectedIndex]="currentTabIndex">
         <nz-tab nzTitle="Overall">
             <nz-list [nzBordered]="false">
                 <nz-list-item nzNoFlex>

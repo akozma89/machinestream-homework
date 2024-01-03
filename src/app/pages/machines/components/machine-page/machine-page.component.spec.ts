@@ -27,6 +27,7 @@ describe('MachinePageComponent', () => {
     let fixture: ComponentFixture<MachinePageComponent>;
     let activatedRouteStub: Partial<ActivatedRoute>;
     let paramMapSpy: jasmine.Spy;
+    let queryParamMapSpy: jasmine.Spy;
     let store: MockStore<any>;
 
     beforeEach(() => {
@@ -36,6 +37,9 @@ describe('MachinePageComponent', () => {
         Object.defineProperties(activatedRouteStub, {
             paramMap: {
                 get: paramMapSpy,
+            },
+            queryParamMap: {
+                get: queryParamMapSpy,
             },
         });
 
@@ -71,6 +75,12 @@ describe('MachinePageComponent', () => {
                 get: () => 1,
             })
         );
+        queryParamMapSpy.and.returnValue(
+            of({
+                get: () => 'overall',
+            })
+        );
+
         // WHEN
         fixture.detectChanges();
 
@@ -89,6 +99,11 @@ describe('MachinePageComponent', () => {
                     get: () => id,
                 })
             );
+            queryParamMapSpy.and.returnValue(
+                of({
+                    get: () => 'events',
+                })
+            );
 
             spyOn(store, 'select').and.returnValue(machine$Mock);
             spyOn<any>(machineSelectors, 'selectMachineById');
@@ -98,6 +113,7 @@ describe('MachinePageComponent', () => {
 
             // THEN
             expect(component.machine$).toEqual(machine$Mock);
+            expect(component.currentTabIndex).toEqual(1);
         });
     });
 

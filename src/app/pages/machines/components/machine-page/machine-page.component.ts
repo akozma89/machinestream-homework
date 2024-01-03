@@ -2,7 +2,7 @@ import { MachineColorStatusMap } from '@interfaces/machine-events-options';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppStore } from '@interfaces/app-store';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Machine } from '@models/machine';
 import { selectMachineById } from '@stores/machines/machines.selectors';
 import { Observable, Subscription } from 'rxjs';
@@ -15,6 +15,12 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { MapComponent } from '@components/map/map.component';
+
+const tabMap: { [key: string]: number } = {
+    overall: 0,
+    events: 1,
+    map: 2,
+};
 
 @Component({
     standalone: true,
@@ -31,9 +37,11 @@ import { MapComponent } from '@components/map/map.component';
         NzTagModule,
         NzListModule,
         MapComponent,
+        RouterLink,
     ],
 })
 export class MachinePageComponent implements OnInit, OnDestroy {
+    currentTabIndex: number = 0;
     machine$!: Observable<Machine | undefined>;
 
     private subscriptions = new Subscription();
@@ -44,11 +52,17 @@ export class MachinePageComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        this.currentTabIndex = 0;
         this.subscriptions.add(
             this.activatedRoute.paramMap.subscribe((params) => {
                 this.machine$ = this.store.select(
                     selectMachineById(params.get('id') || '')
                 );
+            })
+        );
+        this.subscriptions.add(
+            this.activatedRoute.queryParamMap.subscribe((params) => {
+                this.currentTabIndex = tabMap[params.get('tab') || 'overall'];
             })
         );
     }
