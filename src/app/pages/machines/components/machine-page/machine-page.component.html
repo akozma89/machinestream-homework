@@ -11,6 +11,7 @@
             <nz-col nzSpan="18"></nz-col>
         </nz-row>
         <ng-template #desrciptionTemplate>
+            <!-- @TODO: Share device page: NzQRCodeModule -->
             <p>ID: {{ machine.id }}</p>
             <nz-tag [nzColor]="getStatusColor(machine.status)">
                 {{ machine.status }}
@@ -50,6 +51,7 @@
         </nz-tab>
         <nz-tab nzTitle="Events">
             @if (machine.events.length) {
+                <!--- @TODO: Change to NzTimelineModule -->
                 <nz-list [nzBordered]="false">
                     <nz-list-item *ngFor="let item of machine.events">
                         <span>
