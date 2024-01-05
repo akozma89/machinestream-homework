@@ -3,9 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MachinesPageComponent } from './machines-page.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Store } from '@ngrx/store';
-import { MACHINES_STORE } from '@interfaces/machines-state';
-import { SETTINGS_STORE } from '@interfaces/settings-state';
-import { AppStore } from '@interfaces/app-store';
+import { MACHINES_STORE } from '@interfaces/machines-state.interface';
+import { SETTINGS_STORE } from '@interfaces/settings-state.interface';
+import { AppStore } from '@interfaces/app-store.interface';
 
 describe('MachinesPageComponent', () => {
     let component: MachinesPageComponent;

@@ -1,6 +1,6 @@
 import { EntityState } from '@ngrx/entity';
-import { Place } from '../models/place';
-import { Machine } from '../models/machine';
+import { Place } from '../models/place.model';
+import { Machine } from '../models/machine.model';
 
 export const PLACES_STORE = 'placesStore';
 

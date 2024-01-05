@@ -3,7 +3,7 @@ import { EventNotificationsService } from './event-notifications.service';
 import { Injectable } from '@angular/core';
 import { Socket } from 'phoenix';
 import { environment } from '../../environments/environment';
-import { MachineUpdateResponse } from '../interfaces/machine-update-response';
+import { MachineUpdateResponse } from '../interfaces/machine-update-response.interface';
 import { Observable, Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { UpdateMachineAction } from '../stores/machines/machines.actions';

@@ -8,7 +8,7 @@ import machineSelectors from '@stores/machines/machines.selectors';
 import {
     MachineColorStatusMap,
     MachineStatusMap,
-} from '@interfaces/machine-events-options';
+} from '@interfaces/machine-events-options.interface';
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MapComponent } from '@components/map/map.component';

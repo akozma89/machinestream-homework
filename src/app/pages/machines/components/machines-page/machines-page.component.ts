@@ -9,17 +9,18 @@ import {
     NzTableSortFn,
     NzTableSortOrder,
 } from 'ng-zorro-antd/table';
-import { AppStore } from '@interfaces/app-store';
-import { Machine } from '@models/machine';
+import { AppStore } from '@interfaces/app-store.interface';
+import { Machine } from '@models/machine.model';
 import { selectMachines } from '@stores/machines/machines.selectors';
 import { HelperService } from '@services/helper.service';
 import { Observable, Subscription } from 'rxjs';
 import { selectSettingsFeature } from '@stores/settings/settings.selectors';
 import { UpdatePageSizeAction } from '@stores/settings/settings.actions';
+import { StatusFilterOption } from '@interfaces/machine-events-options.interface';
 import {
-    MachineStatusFilters,
-    StatusFilterOption,
-} from '@interfaces/machine-events-options';
+    MACHINE_TYPE_OPTIONS,
+    MACHINE_STATUS_FILTERS,
+} from '@constants/machine.constant';
 
 interface ColumnItem {
     left?: boolean;
@@ -63,10 +64,7 @@ export class MachinesPageComponent implements OnInit, OnDestroy {
                 a.machine_type.localeCompare(b.machine_type),
             sortDirections: ['ascend', 'descend', null],
             filterMultiple: true,
-            listOfFilter: [
-                { text: 'Microscope', value: 'microscope' },
-                { text: 'Measurement', value: 'measurement' },
-            ],
+            listOfFilter: MACHINE_TYPE_OPTIONS,
             filterFn: (list: string[], item: Machine) =>
                 list.some(
                     (machine_type) =>
@@ -80,7 +78,7 @@ export class MachinesPageComponent implements OnInit, OnDestroy {
                 a.status.localeCompare(b.status),
             sortDirections: ['ascend', 'descend', null],
             filterMultiple: true,
-            listOfFilter: MachineStatusFilters,
+            listOfFilter: MACHINE_STATUS_FILTERS,
             filterFn: (list: string[], item: Machine) =>
                 list.some((status) => item.status.indexOf(status) !== -1),
         },

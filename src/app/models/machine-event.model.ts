@@ -1,7 +1,7 @@
 import {
     MachineEventsOptions,
     MachineStatus,
-} from '../interfaces/machine-events-options';
+} from '../interfaces/machine-events-options.interface';
 
 export class MachineEvent {
     timestamp: string;

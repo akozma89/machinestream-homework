@@ -4,9 +4,9 @@ import { MapPageComponent } from './map-page.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Store } from '@ngrx/store';
 import { Component, Input } from '@angular/core';
-import { AppStore } from '@interfaces/app-store';
-import { MACHINES_STORE } from '@interfaces/machines-state';
-import { PLACES_STORE } from '@interfaces/place-state';
+import { AppStore } from '@interfaces/app-store.interface';
+import { MACHINES_STORE } from '@interfaces/machines-state.interface';
+import { PLACES_STORE } from '@interfaces/place-state.interface';
 import { MapComponent } from '@components/map/map.component';
 
 @Component({

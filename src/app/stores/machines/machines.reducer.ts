@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { MachinesState } from '../../interfaces/machines-state';
+import { MachinesState } from '../../interfaces/machines-state.interface';
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Machine } from '../../models/machine';
+import { Machine } from '../../models/machine.model';
 import {
     AddMachineAction,
     LoadMachinesAction,
@@ -11,7 +11,7 @@ import {
     SelectMachineAction,
     UpdateMachineAction,
 } from './machines.actions';
-import { MachineEvent } from '../../models/machine-event';
+import { MachineEvent } from '../../models/machine-event.model';
 
 export const adapter: EntityAdapter<Machine> = createEntityAdapter<Machine>();
 

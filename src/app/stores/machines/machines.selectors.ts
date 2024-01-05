@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
-import { AppStore } from '../../interfaces/app-store';
-import { MACHINES_STORE } from '../../interfaces/machines-state';
+import { AppStore } from '../../interfaces/app-store.interface';
+import { MACHINES_STORE } from '../../interfaces/machines-state.interface';
 
 export const selectMachinesFeature = (state: AppStore) => state[MACHINES_STORE];
 

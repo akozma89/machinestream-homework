@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AppStore } from '@interfaces/app-store';
+import { AppStore } from '@interfaces/app-store.interface';
 import { Store } from '@ngrx/store';
 import { selectSettingsFeature } from '@stores/settings/settings.selectors';
 import { NzFormModule } from 'ng-zorro-antd/form';
@@ -13,7 +13,7 @@ import { UpdateSettingsAction } from '@stores/settings/settings.actions';
 import {
     NotificationLevelSettings,
     SettingsState,
-} from '@interfaces/settings-state';
+} from '@interfaces/settings-state.interface';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { MachineUpdateResponse } from '../interfaces/machine-update-response';
+import { MachineUpdateResponse } from '../interfaces/machine-update-response.interface';
 
 @Injectable({
     providedIn: 'root',

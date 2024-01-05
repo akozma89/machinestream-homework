@@ -1,5 +1,5 @@
 import { EntityState } from '@ngrx/entity';
-import { Machine } from '../models/machine';
+import { Machine } from '../models/machine.model';
 
 export const MACHINES_STORE = 'machinesStore';
 

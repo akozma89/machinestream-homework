@@ -2,10 +2,6 @@ nz-layout {
   overflow: auto;
 }
 
-nz-layout nz-content .inner-content {
-  height: auto!important;
-}
-
 .mapboxgl-map {
   height: 80vh!important;
   width: 99%!important;
@@ -45,4 +41,12 @@ nz-layout nz-content .inner-content {
   .hidden-mobile {
     display: none;
   }
+}
+
+.full-size-loader {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

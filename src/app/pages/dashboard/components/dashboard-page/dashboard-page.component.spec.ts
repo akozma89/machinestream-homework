@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardPageComponent } from './dashboard-page.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
-import { AppStore } from '@interfaces/app-store';
+import { AppStore } from '@interfaces/app-store.interface';
 import { Store } from '@ngrx/store';
 
 describe('DashboardPageComponent', () => {

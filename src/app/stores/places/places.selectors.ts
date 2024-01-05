@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
-import { AppStore } from '../../interfaces/app-store';
-import { PLACES_STORE } from '../../interfaces/place-state';
+import { AppStore } from '../../interfaces/app-store.interface';
+import { PLACES_STORE } from '../../interfaces/place-state.interface';
 
 export const selectPlacesFeature = (state: AppStore) => state[PLACES_STORE];
 

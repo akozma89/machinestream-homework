@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
-import { Place } from '../../models/place';
-import { Machine } from '../../models/machine';
-import { MachineCoordinate } from '../../interfaces/place-state';
+import { Place } from '../../models/place.model';
+import { Machine } from '../../models/machine.model';
+import { MachineCoordinate } from '../../interfaces/place-state.interface';
 
 export enum PlaceActionTypes {
     LoadMachineCoordinates = '[Place] Load Machine Coordinates',

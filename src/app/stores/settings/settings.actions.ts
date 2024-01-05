@@ -1,4 +1,4 @@
-import { NotificationLevelSettings } from '@interfaces/settings-state';
+import { NotificationLevelSettings } from '@interfaces/settings-state.interface';
 import { createAction, props } from '@ngrx/store';
 import { SHOW_MAP_ITEMS } from '@constants/map.constant';
 

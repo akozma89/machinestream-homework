@@ -6,12 +6,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { environment } from '@environments/environment';
-import { AppStore } from '@interfaces/app-store';
-import {
-    MachineColorStatusMap,
-    MachineStatusMap,
-} from '@interfaces/machine-events-options';
-import { Machine } from '@models/machine';
+import { AppStore } from '@interfaces/app-store.interface';
+import { Machine } from '@models/machine.model';
 import { Store } from '@ngrx/store';
 import { HelperService } from '@services/helper.service';
 import { selectMachines } from '@stores/machines/machines.selectors';
@@ -19,6 +15,10 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 import { Observable, map } from 'rxjs';
+import {
+    MACHINE_COLORS_STATUS_MAP,
+    MACHINE_STATUS_MAP,
+} from '@constants/machine.constant';
 
 @Component({
     standalone: true,
@@ -34,7 +34,7 @@ import { Observable, map } from 'rxjs';
     ],
 })
 export class DashboardPageComponent {
-    readonly MachineColorStatusMap = MachineColorStatusMap;
+    readonly MachineColorStatusMap = MACHINE_COLORS_STATUS_MAP;
     readonly showMachineTypePieChart = !environment.production;
 
     machines$: Observable<Machine[]> = this.store
@@ -43,35 +43,35 @@ export class DashboardPageComponent {
     idleMachines$ = this.machines$.pipe(
         map((machines) =>
             machines.filter(
-                (machine) => machine.status === MachineStatusMap.idle
+                (machine) => machine.status === MACHINE_STATUS_MAP.idle
             )
         )
     );
     runningMachines$ = this.machines$.pipe(
         map((machines) =>
             machines.filter(
-                (machine) => machine.status === MachineStatusMap.running
+                (machine) => machine.status === MACHINE_STATUS_MAP.running
             )
         )
     );
     erroredMachines$ = this.machines$.pipe(
         map((machines) =>
             machines.filter(
-                (machine) => machine.status === MachineStatusMap.errored
+                (machine) => machine.status === MACHINE_STATUS_MAP.errored
             )
         )
     );
     repairedMachines$ = this.machines$.pipe(
         map((machines) =>
             machines.filter(
-                (machine) => machine.status === MachineStatusMap.repaired
+                (machine) => machine.status === MACHINE_STATUS_MAP.repaired
             )
         )
     );
     finishedMachines$ = this.machines$.pipe(
         map((machines) =>
             machines.filter(
-                (machine) => machine.status === MachineStatusMap.finished
+                (machine) => machine.status === MACHINE_STATUS_MAP.finished
             )
         )
     );
@@ -132,7 +132,7 @@ export class DashboardPageComponent {
                     value: machines.filter(
                         (machine) =>
                             machine.machine_type === machineType &&
-                            machine.status === MachineStatusMap.idle
+                            machine.status === MACHINE_STATUS_MAP.idle
                     ).length,
                 };
             }),
@@ -145,7 +145,7 @@ export class DashboardPageComponent {
                     value: machines.filter(
                         (machine) =>
                             machine.machine_type === machineType &&
-                            machine.status === MachineStatusMap.running
+                            machine.status === MACHINE_STATUS_MAP.running
                     ).length,
                 };
             }),
@@ -158,7 +158,7 @@ export class DashboardPageComponent {
                     value: machines.filter(
                         (machine) =>
                             machine.machine_type === machineType &&
-                            machine.status === MachineStatusMap.errored
+                            machine.status === MACHINE_STATUS_MAP.errored
                     ).length,
                 };
             }),
@@ -171,7 +171,7 @@ export class DashboardPageComponent {
                     value: machines.filter(
                         (machine) =>
                             machine.machine_type === machineType &&
-                            machine.status === MachineStatusMap.repaired
+                            machine.status === MACHINE_STATUS_MAP.repaired
                     ).length,
                 };
             }),
@@ -184,7 +184,7 @@ export class DashboardPageComponent {
                     value: machines.filter(
                         (machine) =>
                             machine.machine_type === machineType &&
-                            machine.status === MachineStatusMap.finished
+                            machine.status === MACHINE_STATUS_MAP.finished
                     ).length,
                 };
             }),

@@ -7,7 +7,7 @@ import {
     LoadMachinesSuccessAction,
 } from './machines.actions';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { Machine } from '../../models/machine';
+import { Machine } from '../../models/machine.model';
 import { LoadPlacesAction } from '../places/places.actions';
 
 @Injectable()

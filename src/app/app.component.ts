@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventNotificationsComponent } from './components/event-notifications/event-notifications.component';
 import { Store } from '@ngrx/store';
-import { AppStore } from './interfaces/app-store';
+import { AppStore } from './interfaces/app-store.interface';
 import { LoadMachinesAction } from './stores/machines/machines.actions';
 import { LayoutComponent } from './components/layout/layout.component';
 import { selectLoading } from '@stores/machines/machines.selectors';

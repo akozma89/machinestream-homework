@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { Place } from '../../models/place';
-import { PlacesState } from '../../interfaces/place-state';
+import { Place } from '../../models/place.model';
+import { PlacesState } from '../../interfaces/place-state.interface';
 import {
     AddPlaceAction,
     LoadMachineCoordinates,

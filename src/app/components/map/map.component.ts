@@ -11,9 +11,9 @@ import {
     ViewChild,
 } from '@angular/core';
 import { environment } from '@environments/environment';
-import { MachineCoordinate } from '@interfaces/place-state';
-import { Machine } from '@models/machine';
-import { Place } from '@models/place';
+import { MachineCoordinate } from '@interfaces/place-state.interface';
+import { Machine } from '@models/machine.model';
+import { Place } from '@models/place.model';
 import mapboxgl from 'mapbox-gl';
 import { NgxResizeObserverModule } from 'ngx-resize-observer';
 import { Subject, Subscription, debounceTime } from 'rxjs';
@@ -107,7 +107,6 @@ export class MapComponent
     }
 
     resizeMap(): void {
-        console.log('resize');
         this.map.resize();
     }
 }

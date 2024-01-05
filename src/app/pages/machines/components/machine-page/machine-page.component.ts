@@ -1,9 +1,8 @@
-import { MachineColorStatusMap } from '@interfaces/machine-events-options';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppStore } from '@interfaces/app-store';
+import { AppStore } from '@interfaces/app-store.interface';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Machine } from '@models/machine';
+import { Machine } from '@models/machine.model';
 import { selectMachineById } from '@stores/machines/machines.selectors';
 import { Observable, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -15,6 +14,7 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { MapComponent } from '@components/map/map.component';
+import { MACHINE_COLORS_STATUS_MAP } from '@constants/machine.constant';
 
 const tabMap: { [key: string]: number } = {
     overall: 0,
@@ -73,7 +73,7 @@ export class MachinePageComponent implements OnInit, OnDestroy {
 
     getStatusColor(status: string): string {
         const machineColorStatusMap: { [key: string]: string } =
-            MachineColorStatusMap;
+            MACHINE_COLORS_STATUS_MAP;
 
         return machineColorStatusMap[status];
     }

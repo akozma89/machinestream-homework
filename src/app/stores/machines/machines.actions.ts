@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createAction, props } from '@ngrx/store';
-import { Machine } from '../../models/machine';
-import { MachineUpdateResponse } from '../../interfaces/machine-update-response';
+import { Machine } from '../../models/machine.model';
+import { MachineUpdateResponse } from '../../interfaces/machine-update-response.interface';
 
 export enum MachineActionTypes {
     LoadMachines = '[Machine] Load Machines',

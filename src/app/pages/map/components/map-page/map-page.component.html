@@ -1,1 +1,26 @@
-<app-map [data]="showMapItems$ | async"></app-map>
+@if (showMapItems$ | async) {
+    <nz-row class="padding-bottom" nzJustify="end" nzAlign="middle">
+        <nz-col>
+            <nz-select
+                *ngIf="showMapItems$ | async"
+                nzPlaceHolder="Show only map items"
+                [ngModel]="currentShowMapItem"
+                (ngModelChange)="onShowMapItemChange($event)"
+            >
+                <nz-option
+                    [nzValue]="SHOW_MAP_ITEMS.machines"
+                    nzLabel="Show Machines"
+                ></nz-option>
+                <nz-option
+                    [nzValue]="SHOW_MAP_ITEMS.places"
+                    nzLabel="Show Places"
+                ></nz-option>
+            </nz-select>
+        </nz-col>
+    </nz-row>
+    <app-map [data]="showMapItems$ | async"></app-map>
+} @else {
+    <div class="full-size-loader">
+        <nz-spin nzSimple nzSize="large"></nz-spin>
+    </div>
+}

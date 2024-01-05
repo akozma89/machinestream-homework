@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SettingsPageComponent } from './settings-page.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Store } from '@ngrx/store';
-import { AppStore } from '@interfaces/app-store';
-import { SETTINGS_STORE } from '@interfaces/settings-state';
+import { AppStore } from '@interfaces/app-store.interface';
+import { SETTINGS_STORE } from '@interfaces/settings-state.interface';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe('SettingsPageComponent', () => {

@@ -1,5 +1,5 @@
-import { MachineOptions } from '../interfaces/machine-options';
-import { MachineEvent } from './machine-event';
+import { MachineOptions } from '../interfaces/machine-options.interface';
+import { MachineEvent } from './machine-event.model';
 
 export class Machine {
     id!: string;

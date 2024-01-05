@@ -7,10 +7,10 @@ import {
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { catchError, of, switchMap } from 'rxjs';
-import { Machine } from '../../models/machine';
-import { Place } from '../../models/place';
+import { Machine } from '../../models/machine.model';
+import { Place } from '../../models/place.model';
 import { HelperService } from '../../services/helper.service';
-import { MachineCoordinate } from '../../interfaces/place-state';
+import { MachineCoordinate } from '../../interfaces/place-state.interface';
 import { environment } from '../../../environments/environment';
 
 @Injectable()
