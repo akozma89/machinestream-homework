@@ -8,6 +8,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 You can find this project here: [https://machinestream-homework.vercel.app/](https://machinestream-homework.vercel.app/)
 
+## Project purpose
+A homework project submitted in support of an application for a Zeiss developer position.
+https://codingcase.bluesky-ff1656b7.westeurope.azurecontainerapps.io/?type=frontend
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
