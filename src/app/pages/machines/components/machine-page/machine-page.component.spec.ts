@@ -5,13 +5,13 @@ import { MachinePageComponent } from './machine-page.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
 import machineSelectors from '@stores/machines/machines.selectors';
-import {
-    MachineColorStatusMap,
-    MachineStatusMap,
-} from '@interfaces/machine-events-options.interface';
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MapComponent } from '@components/map/map.component';
+import {
+    MACHINE_COLORS_STATUS_MAP,
+    MACHINE_STATUS_MAP,
+} from '@constants/machine.constant';
 
 @Component({
     standalone: true,
@@ -32,6 +32,7 @@ describe('MachinePageComponent', () => {
 
     beforeEach(() => {
         paramMapSpy = jasmine.createSpy('paramMap');
+        queryParamMapSpy = jasmine.createSpy('queryParamMap');
         activatedRouteStub = {};
 
         Object.defineProperties(activatedRouteStub, {
@@ -133,13 +134,13 @@ describe('MachinePageComponent', () => {
     describe('getStatusColor', () => {
         it('should return color', () => {
             // GIVEN
-            const status = MachineStatusMap.idle;
+            const status = MACHINE_STATUS_MAP.idle;
 
             // WHEN
             const color = component.getStatusColor(status);
 
             // THEN
-            expect(color).toEqual(MachineColorStatusMap.idle);
+            expect(color).toEqual(MACHINE_COLORS_STATUS_MAP.idle);
         });
     });
 });

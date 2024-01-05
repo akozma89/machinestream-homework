@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { MACHINES_STORE } from '@interfaces/machines-state.interface';
 import { SETTINGS_STORE } from '@interfaces/settings-state.interface';
 import { AppStore } from '@interfaces/app-store.interface';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('MachinesPageComponent', () => {
     let component: MachinesPageComponent;
@@ -28,7 +29,7 @@ describe('MachinesPageComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [MachinesPageComponent],
+            imports: [MachinesPageComponent, RouterTestingModule],
             providers: [provideMockStore({ initialState })],
         }).compileComponents();
 

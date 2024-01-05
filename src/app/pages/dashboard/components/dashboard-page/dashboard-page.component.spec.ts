@@ -4,6 +4,7 @@ import { DashboardPageComponent } from './dashboard-page.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { AppStore } from '@interfaces/app-store.interface';
 import { Store } from '@ngrx/store';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('DashboardPageComponent', () => {
     let component: DashboardPageComponent;
@@ -12,7 +13,7 @@ describe('DashboardPageComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [DashboardPageComponent],
+            imports: [DashboardPageComponent, RouterTestingModule],
             providers: [provideMockStore({})],
         }).compileComponents();
 
