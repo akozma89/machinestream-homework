@@ -17,7 +17,7 @@
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSpan]="10" nzFor="notificationFrequency">
-            Notification Frequency
+            Notification Frequency (seconds)
         </nz-form-label>
         <nz-form-control [nzSpan]="14">
             <nz-input-number
@@ -31,7 +31,7 @@
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSpan]="10" nzFor="tablePageSize">
-            Table Page Size
+            Table Page Size (rows)
         </nz-form-label>
         <nz-form-control [nzSpan]="14">
             <nz-input-number
@@ -75,7 +75,7 @@
             </nz-form-control>
         </nz-form-item>
     </div>
-    <nz-form-item>
+    <nz-form-item *ngIf="form.dirty">
         <nz-form-control>
             <button nz-button nzType="primary" type="submit">Save</button>
             <button nz-button nzType="default" (click)="resetForm()">

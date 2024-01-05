@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { MachineUpdateResponse } from '../interfaces/machine-update-response.interface';
 
 @Injectable({
@@ -10,11 +10,11 @@ export class EventNotificationsService {
 
     constructor() {}
 
-    get notifications$() {
+    get notifications$(): Observable<MachineUpdateResponse> {
         return this.event$.asObservable();
     }
 
-    notifyEvent(machine: MachineUpdateResponse) {
+    notifyEvent(machine: MachineUpdateResponse): void {
         this.event$.next(machine);
     }
 }

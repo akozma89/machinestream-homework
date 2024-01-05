@@ -32,28 +32,28 @@ describe('MapComponent', () => {
 
             component.data = data as any;
 
-            spyOn(component, 'removeMarkers');
-            spyOn(component, 'addMarker');
+            spyOn<any>(component, 'removeMarkers');
+            spyOn<any>(component, 'addMarker');
 
             // WHEN
             component.ngOnChanges({ data: {} as any });
 
             // THEN
-            expect(component.removeMarkers).toHaveBeenCalledTimes(1);
-            expect(component.addMarker).toHaveBeenCalledTimes(data.length);
+            expect(component['removeMarkers']).toHaveBeenCalledTimes(1);
+            expect(component['addMarker']).toHaveBeenCalledTimes(data.length);
         });
 
         it('should not call removeMarkers and addMarker', () => {
             // GIVEN
-            spyOn(component, 'removeMarkers');
-            spyOn(component, 'addMarker');
+            spyOn<any>(component, 'removeMarkers');
+            spyOn<any>(component, 'addMarker');
 
             // WHEN
             component.ngOnChanges({});
 
             // THEN
-            expect(component.removeMarkers).not.toHaveBeenCalled();
-            expect(component.addMarker).not.toHaveBeenCalled();
+            expect(component['removeMarkers']).not.toHaveBeenCalled();
+            expect(component['addMarker']).not.toHaveBeenCalled();
         });
     });
 
@@ -78,7 +78,7 @@ describe('MapComponent', () => {
             component.ngAfterViewInit();
 
             // WHEN
-            component.addMarker({
+            component['addMarker']({
                 longitude: 0,
                 latitude: 0,
             } as Place);
@@ -97,7 +97,7 @@ describe('MapComponent', () => {
             component.markers = [marker1];
 
             // WHEN
-            component.removeMarkers();
+            component['removeMarkers']();
 
             // THEN
             expect(marker1.remove).toHaveBeenCalled();

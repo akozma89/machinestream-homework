@@ -1,4 +1,7 @@
-import { MachineEventsOptions, MachineStatus } from './machine-events-options.interface';
+import {
+    MachineEventsOptions,
+    MachineStatus,
+} from './machine-events-options.interface';
 
 export interface MachineOptions {
     id: string;

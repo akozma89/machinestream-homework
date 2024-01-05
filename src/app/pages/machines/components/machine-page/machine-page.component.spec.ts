@@ -8,10 +8,7 @@ import machineSelectors from '@stores/machines/machines.selectors';
 import { Component, Input } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MapComponent } from '@components/map/map.component';
-import {
-    MACHINE_COLORS_STATUS_MAP,
-    MACHINE_STATUS_MAP,
-} from '@constants/machine.constant';
+import { MACHINE_STATUS_MAP } from '@constants/machine.constant';
 
 @Component({
     standalone: true,
@@ -132,15 +129,59 @@ describe('MachinePageComponent', () => {
     });
 
     describe('getStatusColor', () => {
-        it('should return color', () => {
+        it('should return color for idle', () => {
             // GIVEN
             const status = MACHINE_STATUS_MAP.idle;
 
             // WHEN
-            const color = component.getStatusColor(status);
+            const result = component.getStatusColor(status);
 
             // THEN
-            expect(color).toEqual(MACHINE_COLORS_STATUS_MAP.idle);
+            expect(result).toEqual('gray');
+        });
+
+        it('should return color for running', () => {
+            // GIVEN
+            const status = MACHINE_STATUS_MAP.running;
+
+            // WHEN
+            const result = component.getStatusColor(status);
+
+            // THEN
+            expect(result).toEqual('blue');
+        });
+
+        it('should return color for errored', () => {
+            // GIVEN
+            const status = MACHINE_STATUS_MAP.errored;
+
+            // WHEN
+            const result = component.getStatusColor(status);
+
+            // THEN
+            expect(result).toEqual('red');
+        });
+
+        it('should return color for repaired', () => {
+            // GIVEN
+            const status = MACHINE_STATUS_MAP.repaired;
+
+            // WHEN
+            const result = component.getStatusColor(status);
+
+            // THEN
+            expect(result).toEqual('green');
+        });
+
+        it('should return color for finished', () => {
+            // GIVEN
+            const status = MACHINE_STATUS_MAP.finished;
+
+            // WHEN
+            const result = component.getStatusColor(status);
+
+            // THEN
+            expect(result).toEqual('green');
         });
     });
 });

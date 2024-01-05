@@ -14,7 +14,10 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { MapComponent } from '@components/map/map.component';
-import { MACHINE_COLORS_STATUS_MAP } from '@constants/machine.constant';
+import { MACHINE_STATUS_MAP } from '@constants/machine.constant';
+import { NzTimelineModule } from 'ng-zorro-antd/timeline';
+import { MachineStatusColor } from '@interfaces/machine-events-options.interface';
+import { NzQRCodeModule } from 'ng-zorro-antd/qr-code';
 
 const tabMap: { [key: string]: number } = {
     overall: 0,
@@ -38,11 +41,14 @@ const tabMap: { [key: string]: number } = {
         NzListModule,
         MapComponent,
         RouterLink,
+        NzTimelineModule,
+        NzQRCodeModule,
     ],
 })
 export class MachinePageComponent implements OnInit, OnDestroy {
     currentTabIndex: number = 0;
     machine$!: Observable<Machine | undefined>;
+    currentUrl: string = window.location.href;
 
     private subscriptions = new Subscription();
 
@@ -71,9 +77,16 @@ export class MachinePageComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    getStatusColor(status: string): string {
-        const machineColorStatusMap: { [key: string]: string } =
-            MACHINE_COLORS_STATUS_MAP;
+    getStatusColor(status: string): MachineStatusColor {
+        const machineColorStatusMap: {
+            [key: string]: MachineStatusColor;
+        } = {
+            [MACHINE_STATUS_MAP.idle]: 'gray',
+            [MACHINE_STATUS_MAP.running]: 'blue',
+            [MACHINE_STATUS_MAP.errored]: 'red',
+            [MACHINE_STATUS_MAP.repaired]: 'green',
+            [MACHINE_STATUS_MAP.finished]: 'green',
+        };
 
         return machineColorStatusMap[status];
     }

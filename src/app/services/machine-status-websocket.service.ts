@@ -27,7 +27,7 @@ export class MachineStatusWebsocketService {
         return this.subscription$.asObservable();
     }
 
-    private initializeSocket() {
+    private initializeSocket(): void {
         if (!this.channel) {
             this.socket.connect();
             this.channel = this.socket.channel('events', {});

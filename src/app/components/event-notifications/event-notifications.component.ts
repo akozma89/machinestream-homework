@@ -87,7 +87,7 @@ export class EventNotificationsComponent implements OnInit, OnDestroy {
         this.subscriptions.unsubscribe();
     }
 
-    private showNotification(event: MachineUpdateResponse) {
+    private showNotification(event: MachineUpdateResponse): void {
         if (this.settings.notificationLevel[event.status]) {
             this.notificationService.template(this.template!, {
                 nzData: {

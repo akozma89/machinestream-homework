@@ -11,11 +11,23 @@
             <nz-col nzSpan="18"></nz-col>
         </nz-row>
         <ng-template #desrciptionTemplate>
-            <!-- @TODO: Share device page: NzQRCodeModule -->
-            <p>ID: {{ machine.id }}</p>
-            <nz-tag [nzColor]="getStatusColor(machine.status)">
-                {{ machine.status }}
-            </nz-tag>
+            <nz-row nzJustify="space-between">
+                <nz-col nzSpan="12">
+                    <p>ID: {{ machine.id }}</p>
+                    <nz-tag [nzColor]="getStatusColor(machine.status)">
+                        {{ machine.status }}
+                    </nz-tag>
+                </nz-col>
+                <nz-col nzSpan="11">
+                    <nz-qrcode
+                        class="hidden-mobile"
+                        nzIcon="assets/zeiss-logo.png"
+                        nzLevel="H"
+                        [nzValue]="currentUrl"
+                        [nzPadding]="12"
+                    ></nz-qrcode>
+                </nz-col>
+            </nz-row>
         </ng-template>
         <ng-template #avatarTemplate>
             <nz-avatar
@@ -51,17 +63,15 @@
         </nz-tab>
         <nz-tab nzTitle="Events">
             @if (machine.events.length) {
-                <!--- @TODO: Change to NzTimelineModule -->
-                <nz-list [nzBordered]="false">
-                    <nz-list-item *ngFor="let item of machine.events">
-                        <span>
-                            {{ item.timestamp | date: 'yyyy-MM-dd HH:mm:ss' }}
-                        </span>
-                        <nz-tag [nzColor]="getStatusColor(item.status)">
-                            {{ item.status }}
-                        </nz-tag>
-                    </nz-list-item>
-                </nz-list>
+                <nz-timeline>
+                    <nz-timeline-item
+                        [nzColor]="getStatusColor(item.status)"
+                        *ngFor="let item of machine.events"
+                    >
+                        {{ item.timestamp | date: 'yyyy-MM-dd HH:mm:ss' }} -
+                        {{ item.status }}
+                    </nz-timeline-item>
+                </nz-timeline>
             } @else {
                 <p>No events yet.</p>
             }

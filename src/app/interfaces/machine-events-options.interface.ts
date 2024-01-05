@@ -1,8 +1,10 @@
+import { SelectOption } from './select.interface';
+
 export type MachineStatus = 'idle' | 'running' | 'errored' | 'repaired';
 
-export interface StatusFilterOption {
-    text: string;
-    value: string;
+export type MachineStatusColor = 'gray' | 'blue' | 'red' | 'green';
+
+export interface StatusFilterOption extends SelectOption {
     byDefault?: boolean;
 }
 

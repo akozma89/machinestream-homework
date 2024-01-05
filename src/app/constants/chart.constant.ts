@@ -1,6 +1,6 @@
 import { Color, LegendPosition } from '@swimlane/ngx-charts';
 
-export const stackedDistributionOptions = {
+export const STACKED_DISTRIBUTION_OPTIONS = {
     showXAxis: true,
     showYAxis: true,
     gradient: false,
@@ -14,7 +14,7 @@ export const stackedDistributionOptions = {
     } as Color,
 };
 
-export const pieBreakdownOptions = {
+export const PIE_BREAKDOWN_OPTIONS = {
     showLegend: true,
     gradient: false,
     showLabels: false,

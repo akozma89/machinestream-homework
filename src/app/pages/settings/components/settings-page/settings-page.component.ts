@@ -58,7 +58,7 @@ export class SettingsPageComponent implements OnInit, OnDestroy {
     constructor(
         private store: Store<AppStore>,
         private formBuilder: FormBuilder,
-        private notificationService: NzNotificationService,
+        private notificationService: NzNotificationService
     ) {}
 
     ngOnInit(): void {

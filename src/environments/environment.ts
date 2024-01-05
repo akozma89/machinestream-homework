@@ -5,7 +5,7 @@ export const environment = {
     apiUrl: 'https://codingcase.bluesky-ff1656b7.westeurope.azurecontainerapps.io/api/v1',
     wsUrl: 'wss://codingcase.bluesky-ff1656b7.westeurope.azurecontainerapps.io/socket/',
     settings: {
-        placeAccuracyInKm: 35,
+        placeAccuracyInKm: 40,
         notificationFrequency: 2000,
         notificationLevel: {
             idle: false,

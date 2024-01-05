@@ -1,5 +1,8 @@
 import { environment } from '@environments/environment';
-import { SETTINGS_STORE, SettingsState } from '@interfaces/settings-state.interface';
+import {
+    SETTINGS_STORE,
+    SettingsState,
+} from '@interfaces/settings-state.interface';
 import { createReducer, on } from '@ngrx/store';
 import { SHOW_MAP_ITEMS } from '@constants/map.constant';
 import {

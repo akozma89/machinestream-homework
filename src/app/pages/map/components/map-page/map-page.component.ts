@@ -1,15 +1,7 @@
-import { MACHINE_TYPE_OPTIONS } from '@constants/machine.constant';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { MapComponent } from '../../../../components/map/map.component';
-import {
-    BehaviorSubject,
-    Observable,
-    Subscription,
-    combineLatest,
-    map,
-    switchMap,
-} from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, switchMap } from 'rxjs';
 import { Place } from '@models/place.model';
 import { Store } from '@ngrx/store';
 import { AppStore } from '@interfaces/app-store.interface';
@@ -26,7 +18,6 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { FormsModule } from '@angular/forms';
 import { UpdateMapViewAction } from '@stores/settings/settings.actions';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { MachineTypeOption } from '@interfaces/machine.interface';
 
 @Component({
     standalone: true,
@@ -73,7 +64,7 @@ export class MapPageComponent {
 
     constructor(private store: Store<AppStore>) {}
 
-    onShowMapItemChange(mapView: SHOW_MAP_ITEMS) {
+    onShowMapItemChange(mapView: SHOW_MAP_ITEMS): void {
         this.store.dispatch(
             UpdateMapViewAction({
                 mapView,

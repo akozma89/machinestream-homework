@@ -64,6 +64,15 @@ export class MapComponent
     }
 
     ngAfterViewInit(): void {
+        this.createMap();
+        this.data?.forEach((target) => this.addMarker(target));
+    }
+
+    triggerResize(): void {
+        this.resize$.next();
+    }
+
+    private createMap(): void {
         this.map = new mapboxgl.Map({
             container: this.mapElement.nativeElement,
             style: 'mapbox://styles/akozma/clqu9ju9y00tm01r54z03he38',
@@ -84,10 +93,9 @@ export class MapComponent
             ),
             zoom: 18,
         });
-        this.data?.forEach((target) => this.addMarker(target));
     }
 
-    addMarker(target: acceptedDataType): void {
+    private addMarker(target: acceptedDataType): void {
         const marker = new mapboxgl.Marker()
             .setLngLat({
                 lng: target.longitude,
@@ -97,16 +105,12 @@ export class MapComponent
         this.markers.push(marker);
     }
 
-    removeMarkers(): void {
+    private removeMarkers(): void {
         this.markers.forEach((marker) => marker.remove());
         this.markers = [];
     }
 
-    triggerResize(): void {
-        this.resize$.next();
-    }
-
-    resizeMap(): void {
+    private resizeMap(): void {
         this.map.resize();
     }
 }

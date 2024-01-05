@@ -1,7 +1,7 @@
 import { Router, RouterLink } from '@angular/router';
 import {
-    stackedDistributionOptions,
-    pieBreakdownOptions,
+    STACKED_DISTRIBUTION_OPTIONS,
+    PIE_BREAKDOWN_OPTIONS,
 } from '@constants/chart.constant';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
@@ -77,7 +77,7 @@ export class DashboardPageComponent {
     );
 
     stackedMachineStatusDistribution = {
-        ...stackedDistributionOptions,
+        ...STACKED_DISTRIBUTION_OPTIONS,
         yAxisLabel: 'Status',
         xAxisLabel: 'Count',
         data$: this.machines$.pipe(
@@ -88,7 +88,7 @@ export class DashboardPageComponent {
     };
 
     pieMachineStatusBreakdown = {
-        ...pieBreakdownOptions,
+        ...PIE_BREAKDOWN_OPTIONS,
         data$: this.machines$.pipe(
             map((machines) => this.buildPieMachineStatusBreakdown(machines))
         ),
